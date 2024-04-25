@@ -1,3 +1,3 @@
-ES: Ejercicio básico de Java sobre una cuenta bancaria.
+ES: Ejercicio básico de Java que hago de vez en cuando.
 
-EN: Basic exercise of Java about one bank account.
+EN: Basic exercise of Java that I will do one in a while.
