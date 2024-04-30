@@ -27,18 +27,18 @@ public class Sudoku implements ActionListener{
 				JTextField t=new JTextField(" i "+i+" j "+j);
 				t.setFont(newTextFieldFont); //Set JTextField font using new created font
 				t.setBounds(50*i,60*j, 50,60); //Left, Top, width text, height text
-//				if (i==2)   {	//To make the borders biggers for the second row
-//					  Border oldBorder = t.getBorder();
-//					  Border blackBorder = BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK); //From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
-//					  Border newBorder = BorderFactory.createCompoundBorder(blackBorder, oldBorder);
-//					  t.setBorder(newBorder);
-//				}
-//				if (j==2)   {	//To make the borders biggers for the second column
-//					  Border oldBorder = t.getBorder();
-//					  Border blackBorder = BorderFactory.createMatteBorder(2, 0, 0, 0, Color.BLACK);
-//					  Border newBorder = BorderFactory.createCompoundBorder(blackBorder, oldBorder);
-//					  t.setBorder(newBorder);
-//				}
+				if (i==2)   {	//To make the borders biggers for the second row
+					  Border oldBorder = t.getBorder();
+					  Border blackBorder = BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK); //From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
+					  Border newBorder = BorderFactory.createCompoundBorder(blackBorder, oldBorder);
+					  t.setBorder(newBorder);
+				}
+				if (j==2)   {	//To make the borders biggers for the second column
+					  Border oldBorder = t.getBorder();
+					  Border blackBorder = BorderFactory.createMatteBorder(2, 0, 0, 0, Color.BLACK);
+					  Border newBorder = BorderFactory.createCompoundBorder(blackBorder, oldBorder);
+					  t.setBorder(newBorder);
+				}
 				panel.add(t);
 			}
 			}	
