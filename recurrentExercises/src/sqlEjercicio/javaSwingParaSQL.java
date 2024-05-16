@@ -33,11 +33,12 @@ public class javaSwingParaSQL{
     	//BOTONES
     	@Override
 		public void actionPerformed(ActionEvent e) {
-			String name = JOptionPane.showInputDialog("Nombre del paquete");
-			int id = Integer.parseInt(JOptionPane.showInputDialog("Id del paquete"));
-			float peso=Float.parseFloat(JOptionPane.showInputDialog("introduce cuanto pesa"));
-			sql.crearColumnaSQL(id,name, peso);
-			}
+//			String name = JOptionPane.showInputDialog("Nombre del paquete");
+//			int id = Integer.parseInt(JOptionPane.showInputDialog("Id del paquete"));
+//			float peso=Float.parseFloat(JOptionPane.showInputDialog("introduce cuanto pesa"));
+//			sql.crearColumnaSQL(id,name, peso);
+    		agarrarDatos ventana = new agarrarDatos();
+    		}
     	});
     	salir.addActionListener((ActionListener) new ActionListener() {	// Add the action listener to the button
     		@Override
