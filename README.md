@@ -1,3 +1,3 @@
-ES: Ejercicio básico de Java que hago de vez en cuando.
+ES: Ejercicio básico de Java hecho para un proyecto en clase.
 
-EN: Basic exercise of Java that I will do one in a while.
+EN: Basic Java exercise done for a class project.
