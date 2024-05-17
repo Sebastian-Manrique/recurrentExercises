@@ -13,11 +13,8 @@ public class agarrarDatos extends  javax.swing.JFrame{
 	JButton button = new JButton("End");
 	
 	public agarrarDatos() {
-		JTextField textField=new JTextField();
-//		Font azi =new Font("Comic Sans MS", Font.BOLD, 200);
-		textField.setFont(new Font("Serif", Font.ITALIC, 150));
-//		textField.setFont(azi);
-		textField=new JTextField("HOLA");
+		JTextField textField=new JTextField("HOLA");
+		textField.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 		panel.add(textField);
 		f.add(panel);
 		f.setSize(400,400);
