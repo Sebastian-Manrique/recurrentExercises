@@ -29,6 +29,7 @@ public class javaSwingParaSQL{
         JButton salir = new JButton("Salir");
         Color c = new Color(214,35,37);
         salir.setBackground(c);
+//asmdkasnmdkasnmdkasmdakdkmakd
     	paquete.addActionListener((ActionListener) new ActionListener() {	// Add the action listener to the button
     	//BOTONES
     	@Override
