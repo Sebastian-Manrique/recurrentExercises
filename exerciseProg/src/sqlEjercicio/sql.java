@@ -17,7 +17,7 @@ public class sql {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); //Creamos conexion
 			String ordenSQL ="INSERT INTO paquete (idPaquete, nombrePaquete, pesoPaquete) VALUES (?,?,?)";
 			PreparedStatement ps = c.prepareStatement(ordenSQL);
-			ps.setInt(1, id);
+			ps.setInt(1, id);	//Trabajador es el True
 			ps.setString(2, nombre);
 			ps.setFloat(3, peso);
 			ps.executeUpdate();
