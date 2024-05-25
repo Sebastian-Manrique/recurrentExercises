@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 public class javaSwingParaSQL{
     public static void main(String[] args) {
     	agarrarDatos iniciar = new agarrarDatos();
-        iniciar.panelDeBotones(); 
+        iniciar.iniciarSesion(); 
 //        JPanel panel = new JPanel();
 //        panel.setLayout(new GridLayout(5, 5, 2, 2)); // Grid layout
 //        JFrame frame = new JFrame("PRUEBA PRUEBA PRUEBA PRUEBA"); //Titulo de la ventana

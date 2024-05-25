@@ -25,33 +25,41 @@ public class agarrarDatos extends javax.swing.JFrame {
 	public agarrarDatos() {
 	}// Constructor con las cosas minimas
 
-//	public void iniciarSesion() { // La ventana para inicar sesion
-//		panel = new JPanel(new GridLayout(3, 3, 5, 5));
-//		Font comic = new Font("Comic Sans MS", Font.PLAIN, 18); // fuente usada
-//		JLabel titulo = new JLabel("Nombre de usuario:");
-//		JTextField textField = new JTextField("Tu nombre");
-//		textField.setFont(comic);
-//		JLabel contraTitulo = new JLabel("Contraseña:");
-//		JTextField contraUser = new JTextField("Tu contraseña");
-//		contraUser.setFont(comic);
-//		panel.add(titulo);
-//		panel.add(textField);
-//		panel.add(contraTitulo);
-//		panel.add(contraUser);
-//		panel.add(button);
-//		f.add(panel);
-//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		f.setSize(400, 400);
-//		f.setVisible(true);
-//		button.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				String string = textField.getText();
-//				JOptionPane.showMessageDialog(null, "Tu nombre es " + string); // El botodn guarda el texto puesto
-//
-//			}
-//		});
-//	}
+	public void iniciarSesion() { // La ventana para inicar sesion
+		panel = new JPanel(new GridLayout(3, 3, 5, 5));
+		Font comic = new Font("Comic Sans MS", Font.PLAIN, 18); // fuente usada
+		JLabel titulo = new JLabel("Nombre de usuario:");
+		JTextField nameUser = new JTextField("Tu nombre");
+		nameUser.setFont(comic);
+		JLabel contraTitulo = new JLabel("Contraseña:");
+		JTextField contraUser = new JTextField("Tu contraseña");
+		contraUser.setFont(comic);
+		panel.add(titulo);
+		panel.add(nameUser);
+		panel.add(contraTitulo);
+		panel.add(contraUser);
+		panel.add(button);
+		f.add(panel);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setSize(400, 400);
+		f.setVisible(true);
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String string = nameUser.getText();
+				JOptionPane.showMessageDialog(null, "Tu nombre es " + string); // El botodn guarda el texto puesto
+				String contra = contraUser.getText();
+				boolean verd = sql.confirmarID(contra);
+				JOptionPane.showMessageDialog(null, "Contra es "+verd);
+				if(verd ==true){
+					agarrarDatos iniciar = new agarrarDatos();
+			        iniciar.panelDeBotones(); 
+				}
+				else
+					JOptionPane.showMessageDialog(null, "TE JODISTE XD");
+			}
+		});
+	}
 
 	public void panelDeBotones() {
 		panel.setLayout(new GridLayout(7, 5, 10, 10)); // Grid layout

@@ -3,6 +3,7 @@ package sqlEjercicio;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -97,6 +98,21 @@ public class sql {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public static boolean confirmarID(String contra) {
+		try {
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
+			Statement ps = c.createStatement(); // Creamos Statement
+			ResultSet rs = ps.executeQuery("SELECT * FROM proyectojava.trabajadores");
+			while (rs.next()) { // Mientras haya más registros en el ResultSet
+				String passwordBDD = rs.getString(5); // Comprobamos las claves
+				if (contra.equals(passwordBDD))
+					return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 }
