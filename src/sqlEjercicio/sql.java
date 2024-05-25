@@ -99,7 +99,8 @@ public class sql {
 			e.printStackTrace();
 		}
 	}
-	public static boolean confirmarID(String name, String contra) {
+	public static Short confirmarID(String name, String contra) {
+		short cargo=404;
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			Statement ps = c.createStatement(); // Creamos Statement
@@ -110,18 +111,20 @@ public class sql {
 					if (name.equals(rs.getString(2))){
 						if (rs.getShort(4)==1) { //Aqui comprueba el cargo, si es cero te lleva a la lista de paquetes.
 							System.out.println("Eres admin");
+							cargo = rs.getShort(4);
 						}
 						else {
 							System.out.println("No eres admin");
+							cargo = rs.getShort(4);
 						}
-						return true;
+						return cargo;
 					}
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return cargo;
 	}
 	
 }

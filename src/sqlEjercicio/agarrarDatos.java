@@ -48,15 +48,17 @@ public class agarrarDatos extends javax.swing.JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String name = nameUser.getText(); // El botodn guarda el texto puesto
-				String contra=String.valueOf(contraUser.getPassword());
-				boolean verdad = sql.confirmarID(name, contra);
-				JOptionPane.showMessageDialog(null, "Tu nombre es " + name+" y la contra es "+verdad);
-				if(verdad ==true){
+				String contra = String.valueOf(contraUser.getPassword());
+				Short verdad = sql.confirmarID(name, contra);
+				JOptionPane.showMessageDialog(null, "Tu nombre es " + name + " y la contra es " + verdad);
+				if (verdad == 1) {			// admin
 					agarrarDatos iniciar = new agarrarDatos();
-			        iniciar.panelDeBotones(); 
+					iniciar.panelDeBotones();
+				} else if (verdad == 0) {// no admin
+					agarrarDatos iniciar = new agarrarDatos();
+					iniciar.panelDeBotones();
 				}
-				else
-					JOptionPane.showMessageDialog(null, "TE JODISTE XD");
+				JOptionPane.showMessageDialog(null, "TE JODISTE XD");
 			}
 		});
 	}
