@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import clases.Empleado;
@@ -22,8 +23,8 @@ public class agarrarDatos extends javax.swing.JFrame {
 	JPanel panel = new JPanel();
 	JButton button = new JButton("End");
 
-	public agarrarDatos() {
-	}// Constructor con las cosas minimas
+	public agarrarDatos() {	// Constructor con las cosas minimas
+	}
 
 	public void iniciarSesion() { // La ventana para inicar sesion
 		panel = new JPanel(new GridLayout(3, 3, 5, 5));
@@ -32,7 +33,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 		JTextField nameUser = new JTextField("Tu nombre");
 		nameUser.setFont(comic);
 		JLabel contraTitulo = new JLabel("Contraseña:");
-		JTextField contraUser = new JTextField("Tu contraseña");
+		JPasswordField contraUser = new JPasswordField();
 		contraUser.setFont(comic);
 		panel.add(titulo);
 		panel.add(nameUser);
@@ -46,12 +47,11 @@ public class agarrarDatos extends javax.swing.JFrame {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String string = nameUser.getText();
-				JOptionPane.showMessageDialog(null, "Tu nombre es " + string); // El botodn guarda el texto puesto
-				String contra = contraUser.getText();
-				boolean verd = sql.confirmarID(contra);
-				JOptionPane.showMessageDialog(null, "Contra es "+verd);
-				if(verd ==true){
+				String name = nameUser.getText(); // El botodn guarda el texto puesto
+				String contra=String.valueOf(contraUser.getPassword());
+				boolean verdad = sql.confirmarID(name, contra);
+				JOptionPane.showMessageDialog(null, "Tu nombre es " + name+" y la contra es "+verdad);
+				if(verdad ==true){
 					agarrarDatos iniciar = new agarrarDatos();
 			        iniciar.panelDeBotones(); 
 				}

@@ -99,15 +99,24 @@ public class sql {
 			e.printStackTrace();
 		}
 	}
-	public static boolean confirmarID(String contra) {
+	public static boolean confirmarID(String name, String contra) {
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			Statement ps = c.createStatement(); // Creamos Statement
-			ResultSet rs = ps.executeQuery("SELECT * FROM proyectojava.trabajadores");
-			while (rs.next()) { // Mientras haya más registros en el ResultSet
-				String passwordBDD = rs.getString(5); // Comprobamos las claves
-				if (contra.equals(passwordBDD))
-					return true;
+			ResultSet rs = ps.executeQuery("SELECT * FROM trabajadores");
+			while (rs.next()) { // Mientras haya más registros en el ResultSet, comprobamos las claves, si cargo es 1, te lleva a menu de opciones
+				System.out.println("Nombre: "+rs.getString(2)+" contraseña: "+rs.getString(5));
+				if (contra.equals(rs.getString(5))){
+					if (name.equals(rs.getString(2))){
+						if (rs.getShort(4)==1) { //Aqui comprueba el cargo, si es cero te lleva a la lista de paquetes.
+							System.out.println("Eres admin");
+						}
+						else {
+							System.out.println("No eres admin");
+						}
+						return true;
+					}
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
