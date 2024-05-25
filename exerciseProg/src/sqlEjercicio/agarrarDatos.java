@@ -43,7 +43,7 @@ public class agarrarDatos extends  javax.swing.JFrame{
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		        String string = textField.getText();
-		        JOptionPane.showMessageDialog(null, string); //El botodn guarda el texto puesto
+		        JOptionPane.showMessageDialog(null, "Tu nombre es "+string); //El botodn guarda el texto puesto
 		    }
 		});
 	}
