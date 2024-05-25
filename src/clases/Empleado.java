@@ -2,9 +2,9 @@ package clases;
 public class Empleado {	//Todos con constructor y sus respectivos getters y setters
     private String id;
     private String nombre;
-    private String cargo;
+    private int cargo;
     //Constructor
-    public Empleado(String id, String nombre, String cargo) {
+    public Empleado(String id, String nombre, int cargo) {
         this.id = id;
         this.nombre = nombre;
         this.cargo = cargo;
@@ -18,7 +18,7 @@ public class Empleado {	//Todos con constructor y sus respectivos getters y sett
         return nombre;
     }
 
-    public String getCargo() {
+    public int getCargo() {
         return cargo;
     }
 
@@ -30,11 +30,7 @@ public class Empleado {	//Todos con constructor y sus respectivos getters y sett
         this.nombre = nombre;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(int cargo) {
         this.cargo = cargo;
-    }
-    //OTROS METODOS
-    public void crearEmpleado(){
-    	
     }
 }
