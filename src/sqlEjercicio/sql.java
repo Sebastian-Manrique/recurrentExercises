@@ -58,13 +58,6 @@ public class sql {
 			ps.setString(1, en.getIdEnvio()); 
 			ps.setString(2, en.getPaquete());
 			ps.setString(3, en.getEmpleado());
-			
-			String ordenSQL2 = "INSERT INTO Envio_historico (idEnvio, idPaquete, idTrabajador) VALUES (?,?,?)";
-			PreparedStatement rs = c.prepareStatement(ordenSQL2);
-			rs.setString(1, en.getIdEnvio()); 
-			rs.setString(2, en.getPaquete());
-			rs.setString(3, en.getEmpleado());
-			rs.executeUpdate();
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
