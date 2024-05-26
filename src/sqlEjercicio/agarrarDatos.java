@@ -33,10 +33,12 @@ public class agarrarDatos extends javax.swing.JFrame {
 		Image Image = ImageIcon.getImage();
 		f.setIconImage(Image);// Iconito
 		JLabel titulo = new JLabel("Nombre de usuario:");
-		JTextField nameUser = new JTextField();
-		nameUser.setFont(comic);
+		JTextField nameUser = new JTextField("Tu nombre");
 		JLabel contraTitulo = new JLabel("Contraseña:");
 		JPasswordField contraUser = new JPasswordField();
+		titulo.setFont(comic);
+		nameUser.setFont(comic);
+		contraTitulo.setFont(comic);
 		contraUser.setFont(comic);
 		panel.add(titulo);
 		panel.add(nameUser);
@@ -54,8 +56,11 @@ public class agarrarDatos extends javax.swing.JFrame {
 				String contra = String.valueOf(contraUser.getPassword());
 				Short verdad = sql.confirmarID(name, contra);
 				System.out.println("Nombre: "+name+", contraseña: "+contra);
-				System.out.println(verdad);
-				if (verdad >= 1) {			// admin
+				System.out.println("Cargo devuelto: "+verdad);
+				if (verdad == 404) {
+					JOptionPane.showMessageDialog(null, "No pusiste nada crack");
+				}
+				else if (verdad >= 1) {			// admin
 					agarrarDatos iniciar = new agarrarDatos();
 					f.dispose();
 					iniciar.panelDeBotones();
@@ -64,6 +69,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 					f.dispose();
 					iniciar.panelRepartidor();
 				}
+				
 			}
 		});
 	}
