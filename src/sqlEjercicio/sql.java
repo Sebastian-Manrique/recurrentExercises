@@ -36,11 +36,13 @@ public class sql {
 	public static void crearEmpleado(Empleado em) {
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
-			String ordenSQL = "INSERT INTO Trabajadores (idEmpleado, nombreEmpleado, cargoPaquete) VALUES (?,?,?)";
+			String ordenSQL ="INSERT INTO trabajadores (idTrabajadores, nombre, apellido, cargo, password) VALUES (?,?,?,?,?);";
 			PreparedStatement ps = c.prepareStatement(ordenSQL);
 			ps.setString(1, em.getId()); // Trabajador es el True
 			ps.setString(2, em.getNombre());
-			ps.setInt(3, em.getCargo());
+			ps.setString(3, em.getApellido());
+			ps.setInt(4, em.getCargo());
+			ps.setString(5, em.getPassword());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,7 +68,7 @@ public class sql {
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			Statement ps = c.createStatement(); //Creamos Statement
-			String ordenSQL = "DELETE FROM TRABAJADORES WHERE idEmpleado ='"+id+"';";
+			String ordenSQL = "DELETE FROM TRABAJADORES WHERE idTrabajadores ='"+id+"';";
 			System.out.println("Fila borrada correctamente");
 			ps.executeUpdate(ordenSQL);
 		} catch (SQLException e) {
@@ -126,5 +128,18 @@ public class sql {
 		}
 		return cargo;
 	}
-	
+
+	public static void mostrarPaquetes() {
+//		try {
+//			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
+//			String ordenSQL = "SELECT * FROM PAQUETES";
+//			Statement s = c.createStatement(); // Creamos Statement
+//			ResultSet rs = s.executeQuery(ordenSQL);
+//			while (rs.next()) { // Mientras haya más registros en el ResultSet
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+	}
+
 }

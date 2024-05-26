@@ -6,6 +6,11 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import clases.Empleado;
+import clases.Envio;
 import clases.Paquete;
 
 public class agarrarDatos extends javax.swing.JFrame {
@@ -106,12 +112,25 @@ public class agarrarDatos extends javax.swing.JFrame {
 			// BOTONES
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String name = JOptionPane.showInputDialog("Nombre del empleado");
 				String id = JOptionPane.showInputDialog("Id del empleado");
+				String name = JOptionPane.showInputDialog("Nombre del empleado");
+				String apellido = JOptionPane.showInputDialog("apellido:");
 				int cargo = Integer.parseInt(JOptionPane.showInputDialog("Introduce el numero del cargo: \n0.Repartidor\n1.Trabajafor normal"));
-				Empleado em1 = new Empleado(id, name, cargo);
+				String password = JOptionPane.showInputDialog("contraseña:");
+				Empleado em1 = new Empleado(id, name, cargo, apellido, password);
 				sql.crearEmpleado(em1);
 			}
+		});
+		envioAdd.addActionListener((ActionListener) new ActionListener() { // Add the action listener to the button
+			// BOTONES
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String name = JOptionPane.showInputDialog("id Envio");
+				String id = JOptionPane.showInputDialog("Id del paquete");
+				String idTra = JOptionPane.showInputDialog("Id trabajador");
+				mostrarPaquetesVentana();
+			}
+
 		});
 		paquetSupr.addActionListener((ActionListener) new ActionListener() { // Add the action listener to the button
 			// BOTONES
@@ -133,6 +152,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 				System.exit(0);
 			}
 		});
+		panel.add(iconoCorreos);
 		panel.add(paqueteAdd);
 		panel.add(empleadoAdd);
 		panel.add(envioAdd);
@@ -179,5 +199,19 @@ public class agarrarDatos extends javax.swing.JFrame {
 		f.setSize(600, 1000);
 		f.setVisible(true);
 		JTextField idEn = new JTextField();
+	}
+	void mostrarPaquetesVentana() {
+		sql.mostrarPaquetes();
+		JLabel paquetesLabel = new JLabel("Aqui va un paquete");
+		panel.add(paquetesLabel);
+		panel.setLayout(new GridLayout(2, 2, 10, 10)); // Grid layout	
+		f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
+		ImageIcon ImageIcon = new ImageIcon("images.jpg");
+		Image Image = ImageIcon.getImage();
+		f.setIconImage(Image);// Iconito
+		JButton salir = new JButton("Salir");
+		Color c = new Color(214, 35, 37);
+		salir.setBackground(c);
 	}
 }
