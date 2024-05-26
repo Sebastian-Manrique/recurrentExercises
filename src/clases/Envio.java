@@ -3,30 +3,30 @@ package clases;
 public class Envio {//Todos con constructor y sus respectivos getters y setters
 	
 	private String idEnvio;
-    private Paquete paquete;
-    private Empleado empleado;
+    private String paquete;
+    private String empleado;
     
     //Constructor
-    public Envio(String idEnvio, Paquete paquete, Empleado empleado) {
+    public Envio(String idEnvio, String paquete, String empleado) {
     	this.idEnvio = idEnvio;
         this.paquete = paquete;
         this.empleado = empleado;
     }
     
     //Getters y setters
-    public Paquete getPaquete() {
+    public String getPaquete() {
         return paquete;
     }
 
-    public Empleado getEmpleado() {
+    public String getEmpleado() {
         return empleado;
     }
 
-    public void setPaquete(Paquete paquete) {
+    public void setPaquete(String paquete) {
         this.paquete = paquete;
     }
 
-    public void setEmpleado(Empleado empleado) {
+    public void setEmpleado(String empleado) {
         this.empleado = empleado;
     }
     
