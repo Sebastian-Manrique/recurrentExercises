@@ -6,11 +6,6 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import clases.Empleado;
-import clases.Envio;
 import clases.Paquete;
 
 public class agarrarDatos extends javax.swing.JFrame {
@@ -29,15 +23,16 @@ public class agarrarDatos extends javax.swing.JFrame {
 	ImageIcon ImageIcon = new ImageIcon("imagen.png");
 	Image Image = ImageIcon.getImage();
 	JLabel iconoCorreos = new JLabel();	// Iconito
+	Font comic = new Font("Comic Sans MS", Font.PLAIN, 18); // fuente usada
 	
 	public agarrarDatos() {	// Constructor con las cosas minimas
 		f.setIconImage(Image);
 		iconoCorreos.setIcon(ImageIcon);
+		f.setVisible(true);
 	}
 
 	public void iniciarSesion() { // La ventana para inicar sesion
 		panel = new JPanel(new GridLayout(3, 3, 5, 5));
-		Font comic = new Font("Comic Sans MS", Font.PLAIN, 18); // fuente usada
 		JLabel titulo = new JLabel("Nombre de usuario:");
 		JTextField nameUser = new JTextField("Tu nombre");
 		JLabel contraTitulo = new JLabel("Contraseña:");
@@ -201,17 +196,13 @@ public class agarrarDatos extends javax.swing.JFrame {
 		JTextField idEn = new JTextField();
 	}
 	void mostrarPaquetesVentana() {
-		sql.mostrarPaquetes();
-		JLabel paquetesLabel = new JLabel("Aqui va un paquete");
-		panel.add(paquetesLabel);
+		String cosa = sql.mostrarPaquetes();
+		JLabel paquetesLabel = new JLabel(cosa);
+		paquetesLabel.setFont(comic);
 		panel.setLayout(new GridLayout(2, 2, 10, 10)); // Grid layout	
-		f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
+		panel.add(paquetesLabel);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
-		ImageIcon ImageIcon = new ImageIcon("images.jpg");
-		Image Image = ImageIcon.getImage();
-		f.setIconImage(Image);// Iconito
-		JButton salir = new JButton("Salir");
-		Color c = new Color(214, 35, 37);
-		salir.setBackground(c);
+		f.add(panel);
+		f.setSize(1000,500);
 	}
 }

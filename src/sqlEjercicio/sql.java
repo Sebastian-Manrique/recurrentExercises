@@ -129,17 +129,21 @@ public class sql {
 		return cargo;
 	}
 
-	public static void mostrarPaquetes() {
-//		try {
-//			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
-//			String ordenSQL = "SELECT * FROM PAQUETES";
-//			Statement s = c.createStatement(); // Creamos Statement
-//			ResultSet rs = s.executeQuery(ordenSQL);
-//			while (rs.next()) { // Mientras haya más registros en el ResultSet
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+	public static String mostrarPaquetes() {
+		String paqueteString="";
+		try {
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
+			String ordenSQL = "SELECT * FROM PAQUETE";
+			Statement s = c.createStatement(); // Creamos Statement
+			ResultSet rs = s.executeQuery(ordenSQL);
+			while (rs.next()) { // Mientras haya más registros en el ResultSet
+				paqueteString = "Id paquete: "+rs.getString(1)+", nombre del paquete: "
+				+rs.getString(2)+", peso del paquete: "+rs.getString(3)+"\n";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return paqueteString;
 	}
 
 }
