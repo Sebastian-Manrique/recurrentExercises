@@ -23,8 +23,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 	JPanel panel = new JPanel();
 	JButton button = new JButton("End");
 
-	public agarrarDatos() {	// Constructor con las cosas minimas
-	}
+	public agarrarDatos() {}// Constructor con las cosas minimas
 
 	public void iniciarSesion() { // La ventana para inicar sesion
 		panel = new JPanel(new GridLayout(3, 3, 5, 5));
@@ -47,22 +46,24 @@ public class agarrarDatos extends javax.swing.JFrame {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String name = nameUser.getText(); // El botodn guarda el texto puesto
+				String name = nameUser.getText(); // El boton guarda el texto puesto
 				String contra = String.valueOf(contraUser.getPassword());
 				Short verdad = sql.confirmarID(name, contra);
 				System.out.println(verdad);
-				if (verdad > 1) {			// admin
+				if (verdad >= 1) {			// admin
 					agarrarDatos iniciar = new agarrarDatos();
+					f.dispose();
 					iniciar.panelDeBotones();
 				} else if (verdad == 0) {// no admin
 					agarrarDatos iniciar = new agarrarDatos();
+					f.dispose();
 					iniciar.usuarioBotones();
 				}
 			}
 		});
 	}
 
-	public void panelDeBotones() {
+	public void panelDeBotones() {	//USUARIOS ADMIN
 		panel.setLayout(new GridLayout(7, 5, 10, 10)); // Grid layout
 		f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
@@ -131,8 +132,8 @@ public class agarrarDatos extends javax.swing.JFrame {
 		f.setSize(600, 1000);
 		f.setVisible(true);
 	}
-	public void usuarioBotones() {
-		panel.setLayout(new GridLayout(7, 5, 10, 10)); // Grid layout
+	public void usuarioBotones() {	//USUARIOS CORRIENTES
+		panel.setLayout(new GridLayout(2, 3, 3, 3)); // Grid layout
 		f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
 		ImageIcon ImageIcon = new ImageIcon("images.jpg");

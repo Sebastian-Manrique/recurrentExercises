@@ -18,7 +18,7 @@ public class sql {
 	static String url = "jdbc:mysql://localhost:3306/proyectojava";
 
 	public static void crearPaquete(Paquete p) {
-		String texto = "Nombre del currante: " + p.getNombre() + "\nId: " + p.getId();
+		String texto = "Nombre del currante: " + p.getNombre() + "\nId: " + p.getId()+ "\nPeso: " + p.getPeso();
 		JOptionPane.showMessageDialog(null, texto);
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
