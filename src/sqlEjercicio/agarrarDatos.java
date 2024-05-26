@@ -1,6 +1,7 @@
 package sqlEjercicio;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -30,7 +31,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 		panel = new JPanel(new GridLayout(3, 3, 5, 5));
 		Font comic = new Font("Comic Sans MS", Font.PLAIN, 18); // fuente usada
 		JLabel titulo = new JLabel("Nombre de usuario:");
-		JTextField nameUser = new JTextField("Tu nombre");
+		JTextField nameUser = new JTextField();
 		nameUser.setFont(comic);
 		JLabel contraTitulo = new JLabel("Contraseña:");
 		JPasswordField contraUser = new JPasswordField();
@@ -131,5 +132,18 @@ public class agarrarDatos extends javax.swing.JFrame {
 		f.add(panel);
 		f.setSize(600, 1000);
 		f.setVisible(true);
+	}
+	
+	public void panelRepartidor() {
+		panel.setLayout(new GridLayout(2, 2, 10, 10)); // Grid layout
+		f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
+		ImageIcon ImageIcon = new ImageIcon("images.jpg");
+		Image Image = ImageIcon.getImage();
+		f.setIconImage(Image);// Iconito
+		JTextField idEn = new JTextField();
+		
+		
+		
 	}
 }

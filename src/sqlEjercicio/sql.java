@@ -1,4 +1,4 @@
-package sqlEjercicio;
+ package sqlEjercicio;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
