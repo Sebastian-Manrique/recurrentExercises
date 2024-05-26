@@ -28,6 +28,10 @@ public class agarrarDatos extends javax.swing.JFrame {
 	public void iniciarSesion() { // La ventana para inicar sesion
 		panel = new JPanel(new GridLayout(3, 3, 5, 5));
 		Font comic = new Font("Comic Sans MS", Font.PLAIN, 18); // fuente usada
+		f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
+		ImageIcon ImageIcon = new ImageIcon("imagen.png");
+		Image Image = ImageIcon.getImage();
+		f.setIconImage(Image);// Iconito
 		JLabel titulo = new JLabel("Nombre de usuario:");
 		JTextField nameUser = new JTextField("Tu nombre");
 		nameUser.setFont(comic);
@@ -67,7 +71,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 		panel.setLayout(new GridLayout(7, 5, 10, 10)); // Grid layout
 		f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
-		ImageIcon ImageIcon = new ImageIcon("images.jpg");
+		ImageIcon ImageIcon = new ImageIcon("imagen.png");
 		Image Image = ImageIcon.getImage();
 		f.setIconImage(Image);// Iconito
 		JButton paqueteAdd = new JButton("Añadir paquete");
