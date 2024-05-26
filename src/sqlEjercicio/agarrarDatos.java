@@ -19,7 +19,7 @@ import clases.Empleado;
 import clases.Paquete;
 
 public class agarrarDatos extends javax.swing.JFrame {
-	JFrame f = new JFrame();
+	JFrame f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
 	JPanel panel = new JPanel();
 	JButton button = new JButton("End");
 
@@ -28,7 +28,6 @@ public class agarrarDatos extends javax.swing.JFrame {
 	public void iniciarSesion() { // La ventana para inicar sesion
 		panel = new JPanel(new GridLayout(3, 3, 5, 5));
 		Font comic = new Font("Comic Sans MS", Font.PLAIN, 18); // fuente usada
-		f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
 		ImageIcon ImageIcon = new ImageIcon("imagen.png");
 		Image Image = ImageIcon.getImage();
 		f.setIconImage(Image);// Iconito
@@ -53,6 +52,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 				String name = nameUser.getText(); // El boton guarda el texto puesto
 				String contra = String.valueOf(contraUser.getPassword());
 				Short verdad = sql.confirmarID(name, contra);
+				System.out.println("Nombre: "+name+", contraseña: "+contra);
 				System.out.println(verdad);
 				if (verdad >= 1) {			// admin
 					agarrarDatos iniciar = new agarrarDatos();
