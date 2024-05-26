@@ -1,6 +1,7 @@
 package sqlEjercicio;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -32,7 +33,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 		Image Image = ImageIcon.getImage();
 		f.setIconImage(Image);// Iconito
 		JLabel titulo = new JLabel("Nombre de usuario:");
-		JTextField nameUser = new JTextField("Tu nombre");
+		JTextField nameUser = new JTextField();
 		nameUser.setFont(comic);
 		JLabel contraTitulo = new JLabel("Contraseña:");
 		JPasswordField contraUser = new JPasswordField();
@@ -61,7 +62,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 				} else if (verdad == 0) {// no admin
 					agarrarDatos iniciar = new agarrarDatos();
 					f.dispose();
-					iniciar.usuarioBotones();
+					iniciar.panelRepartidor();
 				}
 			}
 		});
@@ -136,8 +137,9 @@ public class agarrarDatos extends javax.swing.JFrame {
 		f.setSize(600, 1000);
 		f.setVisible(true);
 	}
-	public void usuarioBotones() {	//USUARIOS CORRIENTES
-		panel.setLayout(new GridLayout(2, 3, 3, 3)); // Grid layout
+	
+	public void panelRepartidor() {	//USUARIOS CORRIENTES
+		panel.setLayout(new GridLayout(2, 2, 10, 10)); // Grid layout	
 		f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
 		ImageIcon ImageIcon = new ImageIcon("images.jpg");
@@ -169,5 +171,6 @@ public class agarrarDatos extends javax.swing.JFrame {
 		f.add(panel);
 		f.setSize(600, 1000);
 		f.setVisible(true);
+		JTextField idEn = new JTextField();
 	}
 }
