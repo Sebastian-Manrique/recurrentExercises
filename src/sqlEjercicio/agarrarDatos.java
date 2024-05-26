@@ -50,15 +50,14 @@ public class agarrarDatos extends javax.swing.JFrame {
 				String name = nameUser.getText(); // El botodn guarda el texto puesto
 				String contra = String.valueOf(contraUser.getPassword());
 				Short verdad = sql.confirmarID(name, contra);
-				JOptionPane.showMessageDialog(null, "Tu nombre es " + name + " y la contra es " + verdad);
-				if (verdad == 1) {			// admin
+				System.out.println(verdad);
+				if (verdad > 1) {			// admin
 					agarrarDatos iniciar = new agarrarDatos();
 					iniciar.panelDeBotones();
 				} else if (verdad == 0) {// no admin
 					agarrarDatos iniciar = new agarrarDatos();
-					iniciar.panelDeBotones();
+					iniciar.usuarioBotones();
 				}
-				JOptionPane.showMessageDialog(null, "TE JODISTE XD");
 			}
 		});
 	}
@@ -127,6 +126,40 @@ public class agarrarDatos extends javax.swing.JFrame {
 		panel.add(paquetSupr);
 		panel.add(empleadoSupr);
 		panel.add(envioSupr);
+		panel.add(salir);
+		f.add(panel);
+		f.setSize(600, 1000);
+		f.setVisible(true);
+	}
+	public void usuarioBotones() {
+		panel.setLayout(new GridLayout(7, 5, 10, 10)); // Grid layout
+		f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
+		ImageIcon ImageIcon = new ImageIcon("images.jpg");
+		Image Image = ImageIcon.getImage();
+		f.setIconImage(Image);// Iconito
+		JButton paqueteAdd = new JButton("Ver paquetes");
+		JButton salir = new JButton("Salir");
+		Color c = new Color(214, 35, 37);
+		salir.setBackground(c);
+		paqueteAdd.addActionListener((ActionListener) new ActionListener() { // Add the action listener to the button
+			// BOTONES
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String name = JOptionPane.showInputDialog("Nombre del paquete");
+				String id = JOptionPane.showInputDialog("Id del paquete");
+				double peso = Double.parseDouble(JOptionPane.showInputDialog("introduce cuanto pesa"));
+				Paquete p1 = new Paquete(id, name , peso);
+				sql.crearPaquete(p1);
+			}
+		});
+		salir.addActionListener((ActionListener) new ActionListener() { // Add the action listener to the button
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		panel.add(paqueteAdd);
 		panel.add(salir);
 		f.add(panel);
 		f.setSize(600, 1000);
