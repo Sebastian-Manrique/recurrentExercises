@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -129,7 +130,8 @@ public class sql {
 		return cargo;
 	}
 
-	public static String mostrarPaquetes() {
+	public static ArrayList<String> mostrarPaquetes() {
+		ArrayList<String> paquetesArraysArrayList = new ArrayList<String>();
 		String paqueteString="";
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
@@ -137,13 +139,31 @@ public class sql {
 			Statement s = c.createStatement(); // Creamos Statement
 			ResultSet rs = s.executeQuery(ordenSQL);
 			while (rs.next()) { // Mientras haya más registros en el ResultSet
-				paqueteString = "Id paquete: "+rs.getString(1)+", nombre del paquete: "
-				+rs.getString(2)+", peso del paquete: "+rs.getString(3)+"\n";
+				paqueteString = "Id paquete: "+rs.getString(1)+", nombre del paquete: "+rs.getString(2)+", peso del paquete: "+rs.getString(3)+"\n";
+				paquetesArraysArrayList.add(paqueteString);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return paqueteString;
+		return paquetesArraysArrayList;
+	}
+	public static ArrayList<String> mostrarTrabajadores() {
+		ArrayList<String> paquetesArraysArrayList = new ArrayList<String>();
+		String paqueteString="";
+		try {
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
+			String ordenSQL = "SELECT * FROM TRABAJADORES";
+			Statement s = c.createStatement(); // Creamos Statement
+			ResultSet rs = s.executeQuery(ordenSQL);
+			while (rs.next()) { // Mientras haya más registros en el ResultSet
+				paqueteString = "Id trabajador: "+rs.getString(1)+", nombre del trabajador: "+rs.getString(2)+", apellido del trabajador: "
+			+rs.getString(3)+", cargo: "+rs.getShort(4)+"\n";
+				paquetesArraysArrayList.add(paqueteString);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return paquetesArraysArrayList;
 	}
 
 }

@@ -2,10 +2,14 @@ package sqlEjercicio;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -196,13 +200,25 @@ public class agarrarDatos extends javax.swing.JFrame {
 		JTextField idEn = new JTextField();
 	}
 	void mostrarPaquetesVentana() {
-		String cosa = sql.mostrarPaquetes();
-		JLabel paquetesLabel = new JLabel(cosa);
+		ArrayList<String> paquetesArraysArrayList = new ArrayList<String>();
+		paquetesArraysArrayList= sql.mostrarPaquetes();
+		JLabel paquetesLabel = new JLabel();
 		paquetesLabel.setFont(comic);
-		panel.setLayout(new GridLayout(2, 2, 10, 10)); // Grid layout	
-		panel.add(paquetesLabel);
+		for (String paqueteString : paquetesArraysArrayList) {
+			paquetesLabel = new JLabel(paqueteString);
+			panel.add(paquetesLabel);
+		}
+		ArrayList<String> trabajadoresArrayList = new ArrayList<String>();
+		trabajadoresArrayList= sql.mostrarTrabajadores();
+		JLabel trabajadoresLabel = new JLabel();
+		for (String paqueteString : trabajadoresArrayList) {
+			trabajadoresLabel = new JLabel(paqueteString);
+			panel.add(trabajadoresLabel);
+		}
+		panel.setLayout(new GridLayout(20, 1, 1, 1)); // Grid layout	
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
 		f.add(panel);
 		f.setSize(1000,500);
 	}
+
 }
