@@ -2,8 +2,6 @@ package sqlEjercicio;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -31,9 +29,11 @@ public class agarrarDatos extends javax.swing.JFrame {
 	Font comic = new Font("Comic Sans MS", Font.PLAIN, 18); // fuente usada
 
 	public agarrarDatos() { // Constructor con las cosas minimas
-		f.setIconImage(Image);
-		iconoCorreos.setIcon(ImageIcon);
 		f.setVisible(true);
+		ImageIcon ImageIcon = new ImageIcon("imagen.png");
+		Image Image = ImageIcon.getImage();
+		f.setIconImage(Image);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
 	}
 
 	public void iniciarSesion() { // La ventana para inicar sesion
@@ -81,11 +81,8 @@ public class agarrarDatos extends javax.swing.JFrame {
 	}
 
 	public void panelDeBotones() { // USUARIOS ADMIN
-		panel.setLayout(new GridLayout(7, 5, 10, 10)); // Grid layout
-		f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
-		ImageIcon ImageIcon = new ImageIcon("imagen.png");
-		Image Image = ImageIcon.getImage();
+		panel.setLayout(new GridLayout(2,4)); // Grid layout
+		iconoCorreos.setIcon(ImageIcon); //Label con la imagen de correos
 		f.setIconImage(Image);// Iconito
 		JButton paqueteAdd = new JButton("Añadir paquete");
 		JButton empleadoAdd = new JButton("Añadir empleado");
@@ -172,7 +169,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 		panel.add(envioSupr);
 		panel.add(salir);
 		f.add(panel);
-		f.setSize(600, 1000);
+		f.setSize(1000, 1000);
 		f.setVisible(true);
 	}
 
