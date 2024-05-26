@@ -1,7 +1,6 @@
 package sqlEjercicio;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -15,27 +14,29 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import clases.Empleado;
 import clases.Paquete;
 
 public class agarrarDatos extends javax.swing.JFrame {
 	JFrame f = new JFrame("CORREOS WANNABE"); // Titulo de la ventana
 	JPanel panel = new JPanel();
-	JButton button = new JButton("End");
-
-	public agarrarDatos() {}// Constructor con las cosas minimas
+	ImageIcon ImageIcon = new ImageIcon("imagen.png");
+	Image Image = ImageIcon.getImage();
+	JLabel iconoCorreos = new JLabel();	// Iconito
+	
+	public agarrarDatos() {	// Constructor con las cosas minimas
+		f.setIconImage(Image);
+		iconoCorreos.setIcon(ImageIcon);
+	}
 
 	public void iniciarSesion() { // La ventana para inicar sesion
 		panel = new JPanel(new GridLayout(3, 3, 5, 5));
 		Font comic = new Font("Comic Sans MS", Font.PLAIN, 18); // fuente usada
-		ImageIcon ImageIcon = new ImageIcon("imagen.png");
-		Image Image = ImageIcon.getImage();
-		f.setIconImage(Image);// Iconito
 		JLabel titulo = new JLabel("Nombre de usuario:");
 		JTextField nameUser = new JTextField("Tu nombre");
 		JLabel contraTitulo = new JLabel("Contraseña:");
 		JPasswordField contraUser = new JPasswordField();
+		JButton button = new JButton("End");
 		titulo.setFont(comic);
 		nameUser.setFont(comic);
 		contraTitulo.setFont(comic);
