@@ -97,11 +97,13 @@ public class agarrarDatos extends javax.swing.JFrame {
 			// BOTONES
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String name = JOptionPane.showInputDialog("Nombre del paquete");
-				String id = JOptionPane.showInputDialog("Id del paquete");
-				double peso = Double.parseDouble(JOptionPane.showInputDialog("introduce cuanto pesa"));
-				Paquete p1 = new Paquete(id, name, peso);
-				sql.crearPaquete(p1);
+//				String name = JOptionPane.showInputDialog("Nombre del paquete");
+//				String id = JOptionPane.showInputDialog("Id del paquete");
+//				double peso = Double.parseDouble(JOptionPane.showInputDialog("introduce cuanto pesa"));
+//				Paquete p1 = new Paquete(id, name, peso);
+//				sql.crearPaquete(p1);
+				agarrarDatos iniciar = new agarrarDatos();
+		    	iniciar.crearPaqueteVentana();
 			}
 		});
 		empleadoAdd.addActionListener((ActionListener) new ActionListener() { // Add the action listener to the button
@@ -169,7 +171,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 		panel.add(envioSupr);
 		panel.add(salir);
 		f.add(panel);
-		f.setSize(1000, 1000);
+		f.setSize(500,400);
 		f.setVisible(true);
 	}
 
@@ -236,5 +238,43 @@ public class agarrarDatos extends javax.swing.JFrame {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
 		f.add(panel);
 		f.setBounds(1000, 0, 600, 500);
+	}
+	public void crearPaqueteVentana() { // La ventana para crear paquetes
+		panel = new JPanel(new GridLayout(4, 4, 5, 5));
+		JLabel idPqJL = new JLabel("Id paquete:");
+		JTextField idPqTF = new JTextField("El id");
+		JLabel namePqJL = new JLabel("Nombre paquete:");
+		JTextField namePqTF = new JTextField("El nombre del paquete");
+		JLabel pesoPqJL = new JLabel("Peso del paquete:");
+		JTextField pesoPqJT = new JTextField("El peso del paquete");
+		
+		JButton button = new JButton("End");
+		idPqJL.setFont(comic);
+		idPqTF.setFont(comic);
+		namePqJL.setFont(comic);
+		namePqTF.setFont(comic);
+		pesoPqJT.setFont(comic);
+		panel.add(idPqJL);
+		panel.add(idPqTF);
+		panel.add(namePqJL);
+		panel.add(namePqTF);
+		panel.add(pesoPqJL);
+		panel.add(pesoPqJT);
+		panel.add(button);
+		f.add(panel);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setSize(400, 400);
+		f.setVisible(true);
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String idPq = idPqTF.getText(); // El boton guarda el texto puesto
+				String nombrePq = namePqTF.getText();
+				double pesoPq = Double.parseDouble(pesoPqJT.getText());
+				Paquete pq = new Paquete(idPq,nombrePq, pesoPq);
+				sql.crearPaquete(pq);
+
+			}
+		});
 	}
 }
