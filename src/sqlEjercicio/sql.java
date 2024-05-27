@@ -22,7 +22,7 @@ public class sql {
 		String texto = "Nombre del currante: " + p.getNombre() + "\nId: " + p.getId()+ "\nPeso: " + p.getPeso();
 		JOptionPane.showMessageDialog(null, texto);
 		try {
-			Connection c = DriverManager.getConnection(url, "root", "@Vlm85158515"); // Creamos conexion
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			String ordenSQL = "INSERT INTO paquete (idPaquete, nombrePaquete, pesoPaquete) VALUES (?,?,?)";
 			PreparedStatement ps = c.prepareStatement(ordenSQL);
 			ps.setString(1, p.getId()); 
@@ -36,7 +36,7 @@ public class sql {
 
 	public static void crearEmpleado(Empleado em) {
 		try {
-			Connection c = DriverManager.getConnection(url, "root", "@Vlm85158515"); // Creamos conexion
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			String ordenSQL ="INSERT INTO trabajadores (idTrabajadores, nombre, apellido, cargo, password) VALUES (?,?,?,?,?);";
 			PreparedStatement ps = c.prepareStatement(ordenSQL);
 			ps.setString(1, em.getId()); // Trabajador es el True
@@ -52,7 +52,7 @@ public class sql {
 	
 	public static void crearEnvio(Envio en) {
 		try {
-			Connection c = DriverManager.getConnection(url, "root", "@Vlm85158515"); // Creamos conexion
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			String ordenSQL = "INSERT INTO Envio (idEnvio, idPaquete, idTrabajador) VALUES (?,?,?)";
 			PreparedStatement ps = c.prepareStatement(ordenSQL);
 			ps.setString(1, en.getIdEnvio()); 
@@ -67,7 +67,7 @@ public class sql {
 	public static void eliminarEmpleado() {
 		String id = JOptionPane.showInputDialog("Dime la ID del trabajador que quieres eliminar");
 		try {
-			Connection c = DriverManager.getConnection(url, "root", "@Vlm85158515"); // Creamos conexion
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			Statement ps = c.createStatement(); //Creamos Statement
 			String ordenSQL = "DELETE FROM TRABAJADORES WHERE idTrabajadores ='"+id+"';";
 			System.out.println("Fila borrada correctamente");
@@ -80,7 +80,7 @@ public class sql {
 	public static void eliminarPaquete() {
 		String id = JOptionPane.showInputDialog("Dime la ID del paquete que quieres eliminar");
 		try {
-			Connection c = DriverManager.getConnection(url, "root", "@Vlm85158515"); // Creamos conexion
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			Statement ps = c.createStatement(); //Creamos Statement
 			String ordenSQL = "DELETE FROM PAQUETE WHERE idPaquete ='"+id+"';";
 			System.out.println("Fila borrada correctamente");
@@ -93,7 +93,7 @@ public class sql {
 	public static void eliminarEnvio() {
 		String id = JOptionPane.showInputDialog("Dime la ID del envio que quieres eliminar");
 		try {
-			Connection c = DriverManager.getConnection(url, "root", "@Vlm85158515"); // Creamos conexion
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			Statement ps = c.createStatement(); //Creamos Statement
 			String ordenSQL = "DELETE FROM ENVIO WHERE idEnvio ='"+id+"';";
 			System.out.println("Fila borrada correctamente");
@@ -105,7 +105,7 @@ public class sql {
 	public static Short confirmarID(String name, String contra) {
 		short cargo=404;
 		try {
-			Connection c = DriverManager.getConnection(url, "root", "@Vlm85158515"); // Creamos conexion
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			Statement ps = c.createStatement(); // Creamos Statement
 			ResultSet rs = ps.executeQuery("SELECT * FROM trabajadores");
 			while (rs.next()) { // Mientras haya más registros en el ResultSet, comprobamos las claves, si cargo es 1, te lleva a menu de opciones
@@ -134,7 +134,7 @@ public class sql {
 		ArrayList<String> paquetesArraysArrayList = new ArrayList<String>();
 		String paqueteString="";
 		try {
-			Connection c = DriverManager.getConnection(url, "root", "@Vlm85158515"); // Creamos conexion
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			String ordenSQL = "SELECT * FROM PAQUETE";
 			Statement s = c.createStatement(); // Creamos Statement
 			ResultSet rs = s.executeQuery(ordenSQL);
@@ -151,7 +151,7 @@ public class sql {
 		ArrayList<String> paquetesArraysArrayList = new ArrayList<String>();
 		String paqueteString="";
 		try {
-			Connection c = DriverManager.getConnection(url, "root", "@Vlm85158515"); // Creamos conexion
+			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			String ordenSQL = "SELECT * FROM TRABAJADORES";
 			Statement s = c.createStatement(); // Creamos Statement
 			ResultSet rs = s.executeQuery(ordenSQL);
