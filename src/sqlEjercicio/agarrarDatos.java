@@ -2,6 +2,7 @@ package sqlEjercicio;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -33,7 +34,6 @@ public class agarrarDatos extends javax.swing.JFrame {
 		ImageIcon ImageIcon = new ImageIcon("imagen.png");
 		Image Image = ImageIcon.getImage();
 		f.setIconImage(Image);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
 	}
 
 	public void iniciarSesion() { // La ventana para inicar sesion
@@ -84,6 +84,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 		panel.setLayout(new GridLayout(2,4)); // Grid layout
 		iconoCorreos.setIcon(ImageIcon); //Label con la imagen de correos
 		f.setIconImage(Image);// Iconito
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
 		JButton paqueteAdd = new JButton("Añadir paquete");
 		JButton empleadoAdd = new JButton("Añadir empleado");
 		JButton envioAdd = new JButton("Añadir envio");
@@ -97,11 +98,6 @@ public class agarrarDatos extends javax.swing.JFrame {
 			// BOTONES
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				String name = JOptionPane.showInputDialog("Nombre del paquete");
-//				String id = JOptionPane.showInputDialog("Id del paquete");
-//				double peso = Double.parseDouble(JOptionPane.showInputDialog("introduce cuanto pesa"));
-//				Paquete p1 = new Paquete(id, name, peso);
-//				sql.crearPaquete(p1);
 				agarrarDatos iniciar = new agarrarDatos();
 		    	iniciar.crearPaqueteVentana();
 			}
@@ -110,14 +106,8 @@ public class agarrarDatos extends javax.swing.JFrame {
 			// BOTONES
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String id = JOptionPane.showInputDialog("Id del empleado");
-				String name = JOptionPane.showInputDialog("Nombre del empleado");
-				String apellido = JOptionPane.showInputDialog("apellido:");
-				int cargo = Integer.parseInt(JOptionPane
-						.showInputDialog("Introduce el numero del cargo: \n0.Repartidor\n1.Trabajafor normal"));
-				String password = JOptionPane.showInputDialog("contraseña:");
-				Empleado em1 = new Empleado(id, name, cargo, apellido, password);
-				sql.crearEmpleado(em1);
+				agarrarDatos iniciar = new agarrarDatos();
+		    	iniciar.crearEmpleadoVentana();
 			}
 		});
 		envioAdd.addActionListener((ActionListener) new ActionListener() { // Add the action listener to the button
@@ -242,11 +232,11 @@ public class agarrarDatos extends javax.swing.JFrame {
 	public void crearPaqueteVentana() { // La ventana para crear paquetes
 		panel = new JPanel(new GridLayout(4, 4, 5, 5));
 		JLabel idPqJL = new JLabel("Id paquete:");
-		JTextField idPqTF = new JTextField("El id");
+		JTextField idPqTF = new JTextField();
 		JLabel namePqJL = new JLabel("Nombre paquete:");
-		JTextField namePqTF = new JTextField("El nombre del paquete");
+		JTextField namePqTF = new JTextField();
 		JLabel pesoPqJL = new JLabel("Peso del paquete:");
-		JTextField pesoPqJT = new JTextField("El peso del paquete");
+		JTextField pesoPqJT = new JTextField();
 		
 		JButton button = new JButton("End");
 		idPqJL.setFont(comic);
@@ -262,7 +252,6 @@ public class agarrarDatos extends javax.swing.JFrame {
 		panel.add(pesoPqJT);
 		panel.add(button);
 		f.add(panel);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(400, 400);
 		f.setVisible(true);
 		button.addActionListener(new ActionListener() {
@@ -273,7 +262,56 @@ public class agarrarDatos extends javax.swing.JFrame {
 				double pesoPq = Double.parseDouble(pesoPqJT.getText());
 				Paquete pq = new Paquete(idPq,nombrePq, pesoPq);
 				sql.crearPaquete(pq);
-
+				f.dispose();
+				JOptionPane.showMessageDialog(null, "De locos pana!");
+			}
+		});
+	}
+	public void crearEmpleadoVentana() { // La ventana para crear paquetes
+		panel = new JPanel(new GridLayout(6, 6, 5, 5));
+		JLabel idEmpJL = new JLabel("Id :");
+		JTextField idEmpTF = new JTextField();
+		JLabel nameEmpJL = new JLabel("Nombre del empleado:");
+		JTextField nombreEmpJT = new JTextField();
+		JLabel surnameEmpJL = new JLabel("Apellido del empleado:");
+		JTextField surnameEmpTF = new JTextField();
+		JLabel cargoEmpJL = new JLabel("cargo del empleado:");
+		JTextField cargoEmpJT = new JTextField();
+		JLabel passwordEmpJL = new JLabel("Contraseña del empleado:");
+		JPasswordField passwordEmpJT = new JPasswordField();
+		JButton button = new JButton("End");
+		idEmpJL.setFont(comic);
+		idEmpTF.setFont(comic);
+		nameEmpJL.setFont(comic);
+		nombreEmpJT.setFont(comic);
+		cargoEmpJT.setFont(comic);
+		surnameEmpJL.setFont(comic);
+		surnameEmpTF.setFont(comic);
+		panel.add(idEmpJL);
+		panel.add(idEmpTF);
+		panel.add(nameEmpJL);
+		panel.add(nombreEmpJT);
+		panel.add(surnameEmpJL);
+		panel.add(surnameEmpTF);
+		panel.add(cargoEmpJL);
+		panel.add(cargoEmpJT);
+		panel.add(passwordEmpJL);
+		panel.add(passwordEmpJT);
+		panel.add(button);
+		f.add(panel);
+		f.setSize(400, 400);
+		f.setVisible(true);
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String idEmp = idEmpTF.getText(); // El boton guarda el texto puesto
+				String nombreEmp = nombreEmpJT.getText();
+				int cargoEmp = Integer.parseInt(cargoEmpJT.getText());
+				String password = String.valueOf(passwordEmpJT.getPassword());
+				String surname = surnameEmpTF.getText();
+				Empleado em1 = new Empleado(idEmp, nombreEmp,cargoEmp,surname, password);
+				sql.crearEmpleado(em1);
+				f.dispose();
 			}
 		});
 	}
