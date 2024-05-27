@@ -123,7 +123,8 @@ public class agarrarDatos extends javax.swing.JFrame {
 			// BOTONES
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				sql.eliminarPaquete();
+			agarrarDatos iniciar = new agarrarDatos();
+		    iniciar.eliminarPaqueteVentana();
 			}
 		});
 		empleadoSupr.addActionListener((ActionListener) new ActionListener() { // Add the action listener to the button
@@ -344,6 +345,29 @@ public class agarrarDatos extends javax.swing.JFrame {
 				Envio envio = new Envio(idEnvio, idPaq, idEmp);
 				sql.crearEnvio(envio);
 				f.dispose();
+			}
+		});
+	}
+	public void eliminarPaqueteVentana() { // La ventana para crear paquetes
+		panel = new JPanel(new GridLayout(4, 4, 5, 5));
+		JLabel idPqJL = new JLabel("Id paquete:");
+		JTextField idPqTF = new JTextField();	
+		JButton button = new JButton("End");
+		idPqJL.setFont(comic);
+		idPqTF.setFont(comic);
+		panel.add(idPqJL);
+		panel.add(idPqTF);
+		panel.add(button);
+		f.add(panel);
+		f.setSize(400, 400);
+		f.setVisible(true);
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int idPq = Integer.parseInt(idPqTF.getText()); // El boton guarda el texto puesto
+				sql.eliminarPaquete(idPq);
+				f.dispose();
+				JOptionPane.showMessageDialog(null, "De locos pana!");
 			}
 		});
 	}

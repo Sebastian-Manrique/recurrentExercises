@@ -75,12 +75,12 @@ public class sql {
 		}
 	}
 	
-	public static void eliminarPaquete() {
-		String id = JOptionPane.showInputDialog("Dime la ID del paquete que quieres eliminar");
+	public static void eliminarPaquete(int id) {
+		System.out.println("holaaa"+id);
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			Statement ps = c.createStatement(); //Creamos Statement
-			String ordenSQL = "DELETE FROM PAQUETE WHERE idPaquete ='"+id+"';";
+			String ordenSQL = "DELETE FROM PAQUETE WHERE idPaquete = "+id+" ";
 			System.out.println("Fila borrada correctamente");
 			ps.executeUpdate(ordenSQL);
 		} catch (SQLException e) {
