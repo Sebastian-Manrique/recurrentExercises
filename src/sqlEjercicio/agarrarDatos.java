@@ -114,13 +114,8 @@ public class agarrarDatos extends javax.swing.JFrame {
 			// BOTONES
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String name = JOptionPane.showInputDialog("id Envio");
-				String id = JOptionPane.showInputDialog("Id del paquete");
-				String idTra = JOptionPane.showInputDialog("Id trabajador");
-				Envio envio = new Envio(name, id, idTra);
-				sql.crearEnvio(envio);
-				JOptionPane.showMessageDialog(null, "El id del envio es: "+ name+ "el id del paquete es: "+id
-						+" el id del trabajador es: "+ idTra);
+				agarrarDatos iniciar = new agarrarDatos();
+		    	iniciar.crearEnvioVentana();
 			}
 
 		});
@@ -311,6 +306,43 @@ public class agarrarDatos extends javax.swing.JFrame {
 				String surname = surnameEmpTF.getText();
 				Empleado em1 = new Empleado(idEmp, nombreEmp,cargoEmp,surname, password);
 				sql.crearEmpleado(em1);
+				f.dispose();
+			}
+		});
+	}
+	protected void crearEnvioVentana() {
+		panel = new JPanel(new GridLayout(6, 6, 5, 5));
+		JLabel idEnvioJL = new JLabel("Id del envio:");
+		JTextField idEnvioJT = new JTextField();
+		JLabel idPaqueteJL = new JLabel("Id del paquete:");
+		JTextField idPaquetJT = new JTextField();
+		JLabel idEmpJL = new JLabel("Id del empleado:");
+		JTextField idEmpJT = new JTextField();
+		JButton button = new JButton("End");
+		idPaqueteJL.setFont(comic);
+		idPaquetJT.setFont(comic);
+		idEmpJL.setFont(comic);
+		idEmpJT.setFont(comic);
+		idEnvioJL.setFont(comic);
+		idEnvioJT.setFont(comic);
+		panel.add(idEnvioJL);
+		panel.add(idEnvioJT);
+		panel.add(idPaqueteJL);
+		panel.add(idPaquetJT);
+		panel.add(idEmpJL);
+		panel.add(idEmpJT);
+		panel.add(button);
+		f.add(panel);
+		f.setSize(400, 400);
+		f.setVisible(true);
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String idEnvio = idPaquetJT.getText(); // El boton guarda el texto puesto
+				String idPaq = idEmpJT.getText();
+				String idEmp = idEnvioJT.getText();
+				Envio envio = new Envio(idEnvio, idPaq, idEmp);
+				sql.crearEnvio(envio);
 				f.dispose();
 			}
 		});
