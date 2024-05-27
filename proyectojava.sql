@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `proyectojava` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `proyectojava`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: localhost    Database: proyectojava
@@ -57,8 +59,8 @@ CREATE TABLE `envio_historico` (
   PRIMARY KEY (`idEnvio`),
   KEY `paquetesFK_idx` (`idPaquete`),
   KEY `trabajadoresFK_idx` (`idTrabajador`),
-  CONSTRAINT `paquetesFK` FOREIGN KEY (`idPaquete`) REFERENCES `paquete` (`idPaquete`),
-  CONSTRAINT `trabajadoresFK` FOREIGN KEY (`idTrabajador`) REFERENCES `trabajadores` (`idTrabajadores`)
+  CONSTRAINT `paquetesFK` FOREIGN KEY (`idPaquete`) REFERENCES `paquete` (`idPaquete`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `trabajadoresFK` FOREIGN KEY (`idTrabajador`) REFERENCES `trabajadores` (`idTrabajadores`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -133,4 +135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-26 19:46:45
+-- Dump completed on 2024-05-28  1:10:32
