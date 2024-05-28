@@ -52,29 +52,16 @@ public class CrearEnvio extends JFrame {
 			};
 	String[] datos2 = new String[3];
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-				try {
-					CrearEnvio frame = new CrearEnvio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public CrearEnvio() {
+		setVisible(true);
 		setTitle("CORREOS WANNABE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearEnvio.class.getResource("/imagenes/imagen.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1013, 499);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		

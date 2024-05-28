@@ -36,7 +36,7 @@ public class ButtonWindow extends JFrame{
 		JButton btnNewButton_1 = new JButton("Añadir Envio");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		    	
+		    	CrearEnvio envio = new CrearEnvio();
 			}
 		});
 		btnNewButton_1.setBounds(26, 285, 161, 39);
