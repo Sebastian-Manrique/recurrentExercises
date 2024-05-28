@@ -14,10 +14,18 @@ import javax.swing.table.DefaultTableModel;
 
 import com.mysql.cj.protocol.Message;
 
+import sqlEjercicio.sql;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Toolkit;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EliminarEmpleado extends JFrame {
 
@@ -30,6 +38,7 @@ public class EliminarEmpleado extends JFrame {
 			"ID","Nombre","Apellido","Cargo","Password"
 			};
 	String[] datos = new String[5];
+	private JTextField textField;
 
 
 	/**
@@ -48,6 +57,8 @@ public class EliminarEmpleado extends JFrame {
 	 * Create the frame.
 	 */
 	public EliminarEmpleado() {
+		setTitle("CORREOS WANNABE");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(EliminarEmpleado.class.getResource("/imagenes/imagen.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 677, 472);
 		contentPane = new JPanel();
@@ -56,8 +67,9 @@ public class EliminarEmpleado extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(10, 11, 46, 14);
+		JLabel lblNewLabel = new JLabel("ID Trabajador");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel.setBounds(10, 11, 130, 49);
 		contentPane.add(lblNewLabel);
 		DefaultTableModel tabla = new DefaultTableModel(titulos, 0);
 		table = new JTable(tabla);
@@ -65,6 +77,22 @@ public class EliminarEmpleado extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(28, 117, 623, 305);
 		contentPane.add(scrollPane);
+		
+		textField = new JTextField();
+		textField.setBounds(189, 16, 165, 43);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Eliminar Trabajador");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String idString = textField.getText();
+				sql.eliminarEmpleado(idString);
+				actualizarTabla(tabla);
+			}
+		});
+		btnNewButton.setBounds(403, 20, 187, 34);
+		contentPane.add(btnNewButton);
 		actualizarTabla(tabla);
 		
 	}
@@ -72,6 +100,7 @@ public class EliminarEmpleado extends JFrame {
 	public void actualizarTabla(DefaultTableModel tabla) {
         
 //        tabla.addRow(titulos);
+		tabla = new DefaultTableModel(null, titulos);
 
         try {
         	Connection c = DriverManager.getConnection(url, "root", "1234");

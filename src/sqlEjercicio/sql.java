@@ -64,8 +64,7 @@ public class sql {
 		}
 	}
 	
-	public static void eliminarEmpleado() {
-		String id = JOptionPane.showInputDialog("Dime la ID del trabajador que quieres eliminar");
+	public static void eliminarEmpleado(String id) {
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			Statement ps = c.createStatement(); //Creamos Statement

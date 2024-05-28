@@ -129,7 +129,6 @@ public class agarrarDatos extends javax.swing.JFrame {
 			// BOTONES
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				sql.eliminarEmpleado();
 			}
 		});
 		envioSupr.addActionListener((ActionListener) new ActionListener() {

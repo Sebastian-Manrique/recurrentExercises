@@ -44,7 +44,6 @@ public class ButtonWindow extends JFrame{
 		JButton btnNewButton_2 = new JButton("Eliminar Empleado");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sql.eliminarEmpleado();
 			}
 		});
 		btnNewButton_2.setBounds(26, 335, 161, 43);
