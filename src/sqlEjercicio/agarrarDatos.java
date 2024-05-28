@@ -2,13 +2,11 @@ package sqlEjercicio;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,19 +36,19 @@ public class agarrarDatos extends javax.swing.JFrame {
 
 	public void iniciarSesion() { // La ventana para inicar sesion
 		panel = new JPanel(new GridLayout(3, 3, 5, 5));
-		JLabel titulo = new JLabel("Nombre de usuario:");
-		JTextField nameUser = new JTextField("Tu nombre");
-		JLabel contraTitulo = new JLabel("Contraseña:");
-		JPasswordField contraUser = new JPasswordField();
+		JLabel tituloJLabel = new JLabel("Nombre de usuario:");
+		JTextField nameUserJTextField = new JTextField("Tu nombre");
+		JLabel contraTituloJLabel =  new JLabel("Contraseña:");
+		JPasswordField contraUserJPasswordField =new JPasswordField();
 		JButton button = new JButton("End");
-		titulo.setFont(comic);
-		nameUser.setFont(comic);
-		contraTitulo.setFont(comic);
-		contraUser.setFont(comic);
-		panel.add(titulo);
-		panel.add(nameUser);
-		panel.add(contraTitulo);
-		panel.add(contraUser);
+		tituloJLabel.setFont(comic);
+		nameUserJTextField.setFont(comic);
+		contraTituloJLabel.setFont(comic);
+		contraUserJPasswordField.setFont(comic);
+		panel.add(tituloJLabel);
+		panel.add(nameUserJTextField);
+		panel.add(contraTituloJLabel);
+		panel.add(contraUserJPasswordField);
 		panel.add(button);
 		f.add(panel);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,8 +57,8 @@ public class agarrarDatos extends javax.swing.JFrame {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String name = nameUser.getText(); // El boton guarda el texto puesto
-				String contra = String.valueOf(contraUser.getPassword());
+				String name = nameUserJTextField.getText(); // El boton guarda el texto puesto
+				String contra = String.valueOf(contraUserJPasswordField.getPassword());
 				Short verdad = sql.confirmarID(name, contra);
 				System.out.println("Nombre: " + name + ", contraseña: " + contra);
 				System.out.println("Cargo devuelto: " + verdad);
@@ -227,25 +225,25 @@ public class agarrarDatos extends javax.swing.JFrame {
 	}
 	public void crearPaqueteVentana() { // La ventana para crear paquetes
 		panel = new JPanel(new GridLayout(4, 4, 5, 5));
-		JLabel idPqJL = new JLabel("Id paquete:");
-		JTextField idPqTF = new JTextField();
-		JLabel namePqJL = new JLabel("Nombre paquete:");
-		JTextField namePqTF = new JTextField();
-		JLabel pesoPqJL = new JLabel("Peso del paquete:");
-		JTextField pesoPqJT = new JTextField();
+		JLabel idPaqueteJLabel = new JLabel("Id paquete:");
+		JTextField idPaqueteJTextField = new JTextField();
+		JLabel namePaqueteJLabel = new JLabel("Nombre paquete:");
+		JTextField namePaqueJTextField = new JTextField();
+		JLabel pesoPaqueteJLabel = new JLabel("Peso del paquete:");
+		JTextField pesoPaqueTextField = new JTextField();
 		
 		JButton button = new JButton("End");
-		idPqJL.setFont(comic);
-		idPqTF.setFont(comic);
-		namePqJL.setFont(comic);
-		namePqTF.setFont(comic);
-		pesoPqJT.setFont(comic);
-		panel.add(idPqJL);
-		panel.add(idPqTF);
-		panel.add(namePqJL);
-		panel.add(namePqTF);
-		panel.add(pesoPqJL);
-		panel.add(pesoPqJT);
+		idPaqueteJLabel.setFont(comic);
+		idPaqueteJTextField.setFont(comic);
+		namePaqueteJLabel.setFont(comic);
+		namePaqueJTextField.setFont(comic);
+		pesoPaqueTextField.setFont(comic);
+		panel.add(idPaqueteJLabel);
+		panel.add(idPaqueteJTextField);
+		panel.add(namePaqueteJLabel);
+		panel.add(namePaqueJTextField);
+		panel.add(pesoPaqueteJLabel);
+		panel.add(pesoPaqueTextField);
 		panel.add(button);
 		f.add(panel);
 		f.setSize(400, 400);
@@ -253,9 +251,9 @@ public class agarrarDatos extends javax.swing.JFrame {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String idPq = idPqTF.getText(); // El boton guarda el texto puesto
-				String nombrePq = namePqTF.getText();
-				double pesoPq = Double.parseDouble(pesoPqJT.getText());
+				String idPq = idPaqueteJTextField.getText(); // El boton guarda el texto puesto
+				String nombrePq = namePaqueJTextField.getText();
+				double pesoPq = Double.parseDouble(pesoPaqueTextField.getText());
 				Paquete pq = new Paquete(idPq,nombrePq, pesoPq);
 				sql.crearPaquete(pq);
 				f.dispose();
@@ -313,25 +311,25 @@ public class agarrarDatos extends javax.swing.JFrame {
 	}
 	public void crearEnvioVentana() {
 		panel = new JPanel(new GridLayout(6, 6, 5, 5));
-		JLabel idEnvioJL = new JLabel("Id del envio:");
-		JTextField idEnvioJT = new JTextField();
-		JLabel idPaqueteJL = new JLabel("Id del paquete:");
-		JTextField idPaquetJT = new JTextField();
-		JLabel idEmpJL = new JLabel("Id del empleado:");
-		JTextField idEmpJT = new JTextField();
+		JLabel idEnvioJLabel= new JLabel("Id del envio:");
+		JTextField idEnvioJTextField = new JTextField();
+		JLabel idPaqueteJLabel = new JLabel("Id del paquete:");
+		JTextField idPaquetJTextField = new JTextField();
+		JLabel idEmpleadoJLabel = new JLabel("Id del empleado:");
+		JTextField idEmpleadoJTextField = new JTextField();
 		JButton button = new JButton("End");
-		idPaqueteJL.setFont(comic);
-		idPaquetJT.setFont(comic);
-		idEmpJL.setFont(comic);
-		idEmpJT.setFont(comic);
-		idEnvioJL.setFont(comic);
-		idEnvioJT.setFont(comic);
-		panel.add(idEnvioJL);
-		panel.add(idEnvioJT);
-		panel.add(idPaqueteJL);
-		panel.add(idPaquetJT);
-		panel.add(idEmpJL);
-		panel.add(idEmpJT);
+		idPaqueteJLabel.setFont(comic);
+		idPaquetJTextField.setFont(comic);
+		idEmpleadoJLabel.setFont(comic);
+		idEmpleadoJTextField.setFont(comic);
+		idEnvioJLabel.setFont(comic);
+		idEnvioJTextField.setFont(comic);
+		panel.add(idEnvioJLabel);
+		panel.add(idEnvioJTextField);
+		panel.add(idPaqueteJLabel);
+		panel.add(idPaquetJTextField);
+		panel.add(idEmpleadoJLabel);
+		panel.add(idEmpleadoJTextField);
 		panel.add(button);
 		f.add(panel);
 		f.setSize(400, 400);
@@ -339,9 +337,9 @@ public class agarrarDatos extends javax.swing.JFrame {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String idEnvio = idPaquetJT.getText(); // El boton guarda el texto puesto
-				String idPaq = idEmpJT.getText();
-				String idEmp = idEnvioJT.getText();
+				String idEnvio = idPaquetJTextField.getText(); // El boton guarda el texto puesto
+				String idPaq = idEmpleadoJTextField.getText();
+				String idEmp = idEnvioJTextField.getText();
 				Envio envio = new Envio(idEnvio, idPaq, idEmp);
 				sql.crearEnvio(envio);
 				f.dispose();
@@ -350,13 +348,13 @@ public class agarrarDatos extends javax.swing.JFrame {
 	}
 	public void eliminarPaqueteVentana() { // La ventana para crear paquetes
 		panel = new JPanel(new GridLayout(4, 4, 5, 5));
-		JLabel idPqJL = new JLabel("Id paquete:");
-		JTextField idPqTF = new JTextField();	
+		JLabel idPaqueteJLabel =  new JLabel("Id paquete:");
+		JTextField idPaqueteJTextField = new JTextField();	
 		JButton button = new JButton("End");
-		idPqJL.setFont(comic);
-		idPqTF.setFont(comic);
-		panel.add(idPqJL);
-		panel.add(idPqTF);
+		idPaqueteJLabel.setFont(comic);
+		idPaqueteJTextField.setFont(comic);
+		panel.add(idPaqueteJLabel);
+		panel.add(idPaqueteJTextField);
 		panel.add(button);
 		f.add(panel);
 		f.setSize(400, 400);
@@ -364,7 +362,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int idPq = Integer.parseInt(idPqTF.getText()); // El boton guarda el texto puesto
+				int idPq = Integer.parseInt(idPaqueteJTextField.getText()); // El boton guarda el texto puesto
 				sql.eliminarPaquete(idPq);
 				f.dispose();
 				JOptionPane.showMessageDialog(null, "De locos pana!");
