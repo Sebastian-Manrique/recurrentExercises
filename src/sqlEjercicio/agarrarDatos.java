@@ -311,7 +311,7 @@ public class agarrarDatos extends javax.swing.JFrame {
 			}
 		});
 	}
-	protected void crearEnvioVentana() {
+	public void crearEnvioVentana() {
 		panel = new JPanel(new GridLayout(6, 6, 5, 5));
 		JLabel idEnvioJL = new JLabel("Id del envio:");
 		JTextField idEnvioJT = new JTextField();
