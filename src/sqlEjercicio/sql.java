@@ -9,9 +9,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import clases.Empleado;
 import clases.Envio;
+import clases.PanelRepartidor;
 import clases.Paquete;
 
 public class sql {
@@ -164,4 +166,31 @@ public class sql {
 		return paquetesArraysArrayList;
 	}
 
+//	public void actualizarTabla(DefaultTableModel tabla) {
+//		PanelRepartidor panelRepartidor = new PanelRepartidor();
+//        String sSQL = "SELECT * FROM ENVIOS";
+//        tabla = new DefaultTableModel(null, titulos);
+//        Connection c = DriverManager.getConnection(url, "root", "1234");;
+////        tabla.addRow(titulos);
+//        panelRepartidor.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
+//        int[] datos = new int[3];
+//        try {
+//            Statement st = c.createStatement();
+//            ResultSet rs = st.executeQuery(sSQL);
+//            while(rs.next()) {
+//                if(rs.getString("Comprado-Alquilado").equalsIgnoreCase("Si")) { // Si esta comprado alquilado no se añade
+//                    continue;
+//                }
+//                datos[0]=rs.getInt("Id Envio");
+//                datos[1]=rs.getInt("Id Paquete");
+//                datos[2]=rs.getInt("Id Trabajador");
+//                tabla.addRow(datos);
+//            }
+//
+//            table.setModel(tabla);
+//        } catch (SQLException e) {
+//            // TODO: handle exception
+//            JOptionPane.showMessageDialog(null, "error " + e, "ERROR", JOptionPane.ERROR_MESSAGE);
+//        }
+// }
 }
