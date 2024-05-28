@@ -16,7 +16,7 @@ import clases.Paquete;
 
 public class sql {
 
-	static String url = "jdbc:mysql://localhost:3306/proyectojava";
+	static String url = "jdbc:mysql://localhost:3307/proyectojava";
 
 	public static void crearPaquete(Paquete p) {
 		try {
