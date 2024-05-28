@@ -24,7 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class PanelRepartidor extends JFrame {
-	String url = "jdbc:mysql://localhost:3307/proyectojava";
+	String url = "jdbc:mysql://localhost:3306/proyectojava";
 	private JTextField textField;
 	private JTable table;
 	DefaultTableModel tabla;

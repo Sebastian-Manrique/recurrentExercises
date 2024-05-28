@@ -6,10 +6,7 @@ import clases.PanelRepartidor;
 
 public class javaSwingParaSQL{
     public static void main(String[] args) {
-//    	agarrarDatos iniciar = new agarrarDatos();
-//    	iniciar.panelDeBotones();
-//    	LogIn ventanaLogIn = new LogIn();
-//    	ButtonWindow ventanaButtonWindow = new ButtonWindow();
-    	PanelRepartidor panelRepartidor = new PanelRepartidor();
+    	PanelRepartidor pRepartidor = new PanelRepartidor();
+    	pRepartidor.setVisible(true);
     }
 }
