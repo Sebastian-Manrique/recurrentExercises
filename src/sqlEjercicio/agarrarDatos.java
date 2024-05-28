@@ -265,34 +265,34 @@ public class agarrarDatos extends javax.swing.JFrame {
 	}
 	public void crearEmpleadoVentana() { // La ventana para crear paquetes
 		panel = new JPanel(new GridLayout(6, 6, 5, 5));
-		JLabel idEmpJL = new JLabel("Id :");
-		JTextField idEmpTF = new JTextField();
-		JLabel nameEmpJL = new JLabel("Nombre del empleado:");
-		JTextField nombreEmpJT = new JTextField();
-		JLabel surnameEmpJL = new JLabel("Apellido del empleado:");
-		JTextField surnameEmpTF = new JTextField();
-		JLabel cargoEmpJL = new JLabel("cargo del empleado:");
-		JTextField cargoEmpJT = new JTextField();
-		JLabel passwordEmpJL = new JLabel("Contraseña del empleado:");
-		JPasswordField passwordEmpJT = new JPasswordField();
+		JLabel idEmpleadoJLabel = new JLabel("Id :");
+		JTextField idEmpleadoJTextField = new JTextField();
+		JLabel nameEmpleadoJLabel = new JLabel("Nombre del empleado:");
+		JTextField nameEmpleadoJTextField = new JTextField();
+		JLabel surnameEmpleadoJLabel = new JLabel("Apellido del empleado:");
+		JTextField surnameEmpleadoJTextField = new JTextField();
+		JLabel cargoEmpleadoJLabel = new JLabel("cargo del empleado:");
+		JTextField cargoEmpleadoJTextField = new JTextField();
+		JLabel passwordEmpleadoJLabel = new JLabel("Contraseña del empleado:");
+		JPasswordField passwordEmpleadoJPasswordField = new JPasswordField();
 		JButton button = new JButton("End");
-		idEmpJL.setFont(comic);
-		idEmpTF.setFont(comic);
-		nameEmpJL.setFont(comic);
-		nombreEmpJT.setFont(comic);
-		cargoEmpJT.setFont(comic);
-		surnameEmpJL.setFont(comic);
-		surnameEmpTF.setFont(comic);
-		panel.add(idEmpJL);
-		panel.add(idEmpTF);
-		panel.add(nameEmpJL);
-		panel.add(nombreEmpJT);
-		panel.add(surnameEmpJL);
-		panel.add(surnameEmpTF);
-		panel.add(cargoEmpJL);
-		panel.add(cargoEmpJT);
-		panel.add(passwordEmpJL);
-		panel.add(passwordEmpJT);
+		idEmpleadoJLabel.setFont(comic);
+		idEmpleadoJTextField.setFont(comic);
+		nameEmpleadoJLabel.setFont(comic);
+		nameEmpleadoJTextField.setFont(comic);
+		cargoEmpleadoJTextField.setFont(comic);
+		surnameEmpleadoJLabel.setFont(comic);
+		surnameEmpleadoJTextField.setFont(comic);
+		panel.add(idEmpleadoJLabel);
+		panel.add(idEmpleadoJTextField);
+		panel.add(nameEmpleadoJLabel);
+		panel.add(nameEmpleadoJTextField);
+		panel.add(surnameEmpleadoJLabel);
+		panel.add(surnameEmpleadoJTextField);
+		panel.add(cargoEmpleadoJLabel);
+		panel.add(cargoEmpleadoJTextField);
+		panel.add(passwordEmpleadoJLabel);
+		panel.add(passwordEmpleadoJPasswordField);
 		panel.add(button);
 		f.add(panel);
 		f.setSize(400, 400);
@@ -300,11 +300,11 @@ public class agarrarDatos extends javax.swing.JFrame {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String idEmp = idEmpTF.getText(); // El boton guarda el texto puesto
-				String nombreEmp = nombreEmpJT.getText();
-				int cargoEmp = Integer.parseInt(cargoEmpJT.getText());
-				String password = String.valueOf(passwordEmpJT.getPassword());
-				String surname = surnameEmpTF.getText();
+				String idEmp = idEmpleadoJTextField.getText(); // El boton guarda el texto puesto
+				String nombreEmp = nameEmpleadoJTextField.getText();
+				int cargoEmp = Integer.parseInt(cargoEmpleadoJTextField.getText());
+				String password = String.valueOf(passwordEmpleadoJPasswordField.getPassword());
+				String surname = surnameEmpleadoJTextField.getText();
 				Empleado em1 = new Empleado(idEmp, nombreEmp,cargoEmp,surname, password);
 				sql.crearEmpleado(em1);
 				f.dispose();
