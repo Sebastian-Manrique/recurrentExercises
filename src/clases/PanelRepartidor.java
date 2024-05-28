@@ -66,17 +66,15 @@ public class PanelRepartidor extends JFrame {
 	public void actualizarTabla(DefaultTableModel tabla) {
         String sSQL = "SELECT * FROM ENVIO";
         tabla = new DefaultTableModel(null, titulos);
-        Connection c;
         table.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
 		try {
-			System.out.println("hlaa");
-			c = DriverManager.getConnection(url, "root", "1234");
+			Connection c = DriverManager.getConnection(url, "root", "1234");
 			Statement st = c.createStatement();
 	        ResultSet rs = st.executeQuery(sSQL);
 	        while(rs.next()) {
-	                datos[0]=rs.getInt("Id Envio")+"";
-	                datos[1]=rs.getInt("Id Paquete")+"";
-	                datos[2]=rs.getInt("Id Trabajador")+"";
+	                datos[0]=rs.getInt("IdEnvio")+"";
+	                datos[1]=rs.getInt("IdPaquete")+"";
+	                datos[2]=rs.getInt("IdTrabajador")+"";
 	                tabla.addRow(datos);
 	        } 
 	     }catch (SQLException e) {
