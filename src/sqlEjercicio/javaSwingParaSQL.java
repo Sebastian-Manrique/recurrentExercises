@@ -8,6 +8,9 @@ import clases.PanelRepartidor;
 public class javaSwingParaSQL{
     public static void main(String[] args) {
  
-    	EliminarEmpleado empleado = new EliminarEmpleado();
+//    	EliminarEmpleado empleado = new EliminarEmpleado();
+//    	ButtonWindow buttonWindow = new ButtonWindow();
+//    	agarrarDatos agarrarDatos = new agarrarDatos();
+//    	agarrarDatos.panelDeBotones();
     }
 }

@@ -51,8 +51,7 @@ public class ButtonWindow extends JFrame{
 		JButton btnNewButton_3 = new JButton("Eliminar Paquete");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				agarrarDatos iniciar = new agarrarDatos();
-			    iniciar.eliminarPaqueteVentana();
+				EliminarPaquete p = new EliminarPaquete();
 			}
 		});
 		btnNewButton_3.setBounds(26, 389, 161, 42);

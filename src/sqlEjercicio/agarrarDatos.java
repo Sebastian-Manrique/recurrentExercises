@@ -297,16 +297,27 @@ public class agarrarDatos extends javax.swing.JFrame {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String idEmp = idEmpleadoJTextField.getText(); // El boton guarda el texto puesto
-				String nombreEmp = nameEmpleadoJTextField.getText();
-				int cargoEmp = Integer.parseInt(cargoEmpleadoJTextField.getText());
-				String password = String.valueOf(passwordEmpleadoJPasswordField.getPassword());
-				String surname = surnameEmpleadoJTextField.getText();
-				Empleado em1 = new Empleado(idEmp, nombreEmp,cargoEmp,surname, password);
-				sql.crearEmpleado(em1);
-				f.dispose();
-			}
-		});
+                boolean error = false;
+                do {
+                    String idEmp = idEmpleadoJTextField.getText(); // El boton guarda el texto puesto
+                    String nombreEmp = nameEmpleadoJTextField.getText();
+                    int cargoEmp = Integer.parseInt(cargoEmpleadoJTextField.getText());
+                    if (cargoEmp == 0 | cargoEmp == 1) {
+                        String password = String.valueOf(passwordEmpleadoJPasswordField.getPassword());
+                        String surname = surnameEmpleadoJTextField.getText();
+                        Empleado em1 = new Empleado(idEmp, nombreEmp, cargoEmp, surname, password);
+                        sql.crearEmpleado(em1);
+                        f.dispose();
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "El cargo solo puede ser:\n1.JEFE\n0.TRABAJADOR");
+                        error = true;
+                    }
+                } while (error=false);
+                
+
+            }
+        });
 	}
 	public void crearEnvioVentana() {
 		panel = new JPanel(new GridLayout(6, 6, 5, 5));
