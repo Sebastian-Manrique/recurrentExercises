@@ -57,7 +57,6 @@ public class CrearEnvio extends JFrame {
 		setVisible(true);
 		setTitle("CORREOS WANNABE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearEnvio.class.getResource("/imagenes/imagen.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1013, 499);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -133,6 +132,7 @@ public class CrearEnvio extends JFrame {
 		});
 		btnNewButton.setBounds(810, 9, 147, 37);
 		contentPane.add(btnNewButton);
+		setLocationRelativeTo(null);
 		
 		
 		

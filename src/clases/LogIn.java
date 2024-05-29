@@ -60,10 +60,10 @@ public class LogIn extends JFrame{
 					ButtonWindow iniciar = new ButtonWindow();
 				} else if (verdad == 0) {// no admin
 					dispose();
-					PanelRepartidor panelRepartidor = new PanelRepartidor();
-				
+					PanelRepartidor panelRepartidor = new PanelRepartidor(name);
 				}
 			}
+			
 		});
 		btnNewButton.setBounds(75, 145, 132, 36);
 		getContentPane().add(btnNewButton);

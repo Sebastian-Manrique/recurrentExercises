@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 
-import sqlEjercicio.agarrarDatos;
 import sqlEjercicio.sql;
 
 import java.awt.Color;
@@ -44,6 +43,7 @@ public class ButtonWindow extends JFrame{
 		JButton btnNewButton_2 = new JButton("Eliminar Empleado");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				EliminarEmpleado eliminarEmpleado = new EliminarEmpleado();
 			}
 		});
 		btnNewButton_2.setBounds(26, 335, 161, 43);
@@ -59,7 +59,7 @@ public class ButtonWindow extends JFrame{
 		JButton btnNewButton_4 = new JButton("Eliminar Envio");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sql.eliminarEnvio();
+				EliminarEnvio envio = new EliminarEnvio();
 			}
 		});
 		btnNewButton_4.setBounds(26, 442, 161, 45);
@@ -75,7 +75,7 @@ public class ButtonWindow extends JFrame{
 		
 		JButton btnNewButton_5 = new JButton("Salir");
 		btnNewButton_5.setBackground(new Color(255, 0, 0));
-		btnNewButton_5.setBounds(26, 498, 161, 51);
+		btnNewButton_5.setBounds(26, 548, 161, 51);
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -94,9 +94,18 @@ public class ButtonWindow extends JFrame{
 		lblNewLabel.setBounds(10, 11, 203, 162);
 		frmButtons.getContentPane().add(lblNewLabel);
 		
+		JButton btnNewButton_7 = new JButton("Modificar Contraseña");
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarContraseñas psContraseñas = new ModificarContraseñas();
+			}
+		});
+		btnNewButton_7.setBounds(26, 498, 161, 39);
+		frmButtons.getContentPane().add(btnNewButton_7);
+		
 
 		frmButtons.setVisible(true);
-		frmButtons.setSize(239, 619);
+		frmButtons.setSize(239, 645);
 		frmButtons.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Que se acabe al cerrar
 		frmButtons.setLocationRelativeTo(null);
 		

@@ -20,7 +20,8 @@ public class sql {
 
 	static String url = "jdbc:mysql://localhost:3306/proyectojava";
 
-	public static void crearPaquete(Paquete p) {
+	public static boolean crearPaquete(Paquete p) {
+		boolean correcto = false;
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			String ordenSQL = "INSERT INTO paquete (idPaquete, nombrePaquete, pesoPaquete) VALUES (?,?,?)";
@@ -29,9 +30,12 @@ public class sql {
 			ps.setString(2, p.getNombre());
 			ps.setDouble(3, p.getPeso());
 			ps.executeUpdate();
+			correcto = true;
+			return correcto;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return correcto;
 	}
 
 	public static void crearEmpleado(Empleado em) {
@@ -54,11 +58,18 @@ public class sql {
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			String ordenSQL = "INSERT INTO Envio (idEnvio, idPaquete, idTrabajador) VALUES (?,?,?)";
+			String ordenSQL2 = "INSERT INTO Envio_historico (idEnvio, idPaquete, idTrabajador) VALUES (?,?,?)";
 			PreparedStatement ps = c.prepareStatement(ordenSQL);
 			ps.setString(1, en.getIdEnvio()); 
 			ps.setString(2, en.getPaquete());
 			ps.setString(3, en.getEmpleado());
 			ps.executeUpdate();
+			PreparedStatement ps2 = c.prepareStatement(ordenSQL2);
+			ps2.setString(1, en.getIdEnvio()); 
+			ps2.setString(2, en.getPaquete());
+			ps2.setString(3, en.getEmpleado());
+			ps2.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -89,8 +100,7 @@ public class sql {
 		}
 	}
 	
-	public static void eliminarEnvio() {
-		String id = JOptionPane.showInputDialog("Dime la ID del envio que quieres eliminar");
+	public static void eliminarEnvio(int id) {
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
 			Statement ps = c.createStatement(); //Creamos Statement
@@ -129,67 +139,22 @@ public class sql {
 		return cargo;
 	}
 
-	public static ArrayList<String> mostrarPaquetes() {
-		ArrayList<String> paquetesArraysArrayList = new ArrayList<String>();
-		String paqueteString="";
+	
+	public static boolean modificarPassword(String password, int id) {
+		boolean verdad = false;
+		String ordenSqlString = "UPDATE `proyectojava`.`trabajadores` SET `password` = '1297' WHERE (`idTrabajadores` = '12')";
 		try {
 			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
-			String ordenSQL = "SELECT * FROM PAQUETE";
-			Statement s = c.createStatement(); // Creamos Statement
-			ResultSet rs = s.executeQuery(ordenSQL);
-			while (rs.next()) { // Mientras haya más registros en el ResultSet
-				paqueteString = "Id paquete: "+rs.getString(1)+", nombre del paquete: "+rs.getString(2)+", peso del paquete: "+rs.getString(3)+"\n";
-				paquetesArraysArrayList.add(paqueteString);
-			}
+			Statement ps = c.createStatement(); //Creamos Statement
+			String ordenSQL = "UPDATE `proyectojava`.`trabajadores` SET `password` = '"+password+"' WHERE (`idTrabajadores` = '"+id+"')";
+			System.out.println("Contraseña modificada correctamente");
+			ps.executeUpdate(ordenSQL);
+			verdad = true;
+			return verdad;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return paquetesArraysArrayList;
-	}
-	public static ArrayList<String> mostrarTrabajadores() {
-		ArrayList<String> paquetesArraysArrayList = new ArrayList<String>();
-		String paqueteString="";
-		try {
-			Connection c = DriverManager.getConnection(url, "root", "1234"); // Creamos conexion
-			String ordenSQL = "SELECT * FROM TRABAJADORES";
-			Statement s = c.createStatement(); // Creamos Statement
-			ResultSet rs = s.executeQuery(ordenSQL);
-			while (rs.next()) { // Mientras haya más registros en el ResultSet
-				paqueteString = "Id trabajador: "+rs.getString(1)+", nombre del trabajador: "+rs.getString(2)+", apellido del trabajador: "
-			+rs.getString(3)+", cargo: "+rs.getShort(4)+"\n";
-				paquetesArraysArrayList.add(paqueteString);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return paquetesArraysArrayList;
+		return verdad;
 	}
 
-//	public void actualizarTabla(DefaultTableModel tabla) {
-//		PanelRepartidor panelRepartidor = new PanelRepartidor();
-//        String sSQL = "SELECT * FROM ENVIOS";
-//        tabla = new DefaultTableModel(null, titulos);
-//        Connection c = DriverManager.getConnection(url, "root", "1234");;
-////        tabla.addRow(titulos);
-//        panelRepartidor.setDefaultRenderer(Object.class, new CustomTableCellRenderer());
-//        int[] datos = new int[3];
-//        try {
-//            Statement st = c.createStatement();
-//            ResultSet rs = st.executeQuery(sSQL);
-//            while(rs.next()) {
-//                if(rs.getString("Comprado-Alquilado").equalsIgnoreCase("Si")) { // Si esta comprado alquilado no se añade
-//                    continue;
-//                }
-//                datos[0]=rs.getInt("Id Envio");
-//                datos[1]=rs.getInt("Id Paquete");
-//                datos[2]=rs.getInt("Id Trabajador");
-//                tabla.addRow(datos);
-//            }
-//
-//            table.setModel(tabla);
-//        } catch (SQLException e) {
-//            // TODO: handle exception
-//            JOptionPane.showMessageDialog(null, "error " + e, "ERROR", JOptionPane.ERROR_MESSAGE);
-//        }
-// }
 }

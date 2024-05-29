@@ -41,32 +41,19 @@ public class EliminarEmpleado extends JFrame {
 	private JTextField textField;
 
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-				try {
-					EliminarEmpleado frame = new EliminarEmpleado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public EliminarEmpleado() {
+		
+		setVisible(true);
 		setTitle("CORREOS WANNABE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(EliminarEmpleado.class.getResource("/imagenes/imagen.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 677, 472);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setLocationRelativeTo(null);
 		JLabel lblNewLabel = new JLabel("ID Trabajador");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setBounds(10, 11, 130, 49);

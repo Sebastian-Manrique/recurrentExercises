@@ -36,7 +36,7 @@ public class CrearPaquete extends JFrame{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearPaquete.class.getResource("/imagenes/imagen.png")));
 		setTitle("CORREOS WANNABE");
 		getContentPane().setLayout(null);
-		
+		setLocationRelativeTo(null);
 		JLabel lblNewLabel = new JLabel("ID");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setBounds(33, 45, 102, 33);
@@ -87,9 +87,7 @@ public class CrearPaquete extends JFrame{
 		});
 		btnNewButton.setBounds(654, 39, 144, 49);
 		getContentPane().add(btnNewButton);
-		
 		setVisible(true);
-		setLocationRelativeTo(null);
 		setSize(860, 496);
 		actualizarTablaPaquetes(tabla);
 	}
