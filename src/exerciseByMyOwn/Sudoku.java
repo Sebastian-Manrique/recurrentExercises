@@ -14,7 +14,9 @@ public class Sudoku implements ActionListener{
 	JButton button = new JButton("End");
 	
 	public Sudoku() {
-		
+		ImageIcon img = new ImageIcon("sudokuIcon.png");
+		f.setIconImage(img.getImage());
+		f.setTitle("Sudoku");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(1200,800);
 		Font newTextFieldFont=new Font("Default", Font.PLAIN, 60);//60 //Create font. Code from https://java2everyone.blogspot.com/2008/12/set-jtextfield-text-size.html
@@ -40,7 +42,7 @@ public class Sudoku implements ActionListener{
 				}
 			}
 			}	
-		f.add(panel, BorderLayout.CENTER); // Añadir el panel al centro del contenedor principal
+		f.add(panel, BorderLayout.CENTER); // Adding the panel at the center of the component
 	    button.setFocusable(false);
 	    button.addActionListener(this);
 	    f.add(button, BorderLayout.SOUTH); // Añadir el botón al fondo del contenedor principal
