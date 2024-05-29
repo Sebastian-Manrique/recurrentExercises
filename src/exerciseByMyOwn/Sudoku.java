@@ -15,24 +15,24 @@ public class Sudoku implements ActionListener{
 	JButton button = new JButton("End");
 	
 	public Sudoku() {
-		ImageIcon img = new ImageIcon("sudokuIcon.png");
+		ImageIcon img = new ImageIcon("images&Fonts/sudokuIcon.png");
 		f.setIconImage(img.getImage());
 		f.setTitle("Sudoku");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//Close on exit
-		f.setSize(400,420);
-		Font newTextFieldFont=new Font("COMIC SANS MS", Font.PLAIN, 15);//60 //Create font. Code from https://java2everyone.blogspot.com/2008/12/set-jtextfield-text-size.html
+		f.setSize(600,650);
+		Font newTextFieldFont=new Font("Roboto", Font.PLAIN, 30);//60 //Create font. Code from https://java2everyone.blogspot.com/2008/12/set-jtextfield-text-size.html
 		JPanel panel = new JPanel(new GridLayout(6, 6));
 		for (int i=0; i<6;i++) { //Row
 			for (int j = 0; j <6; j++) { //Column	
 				JTextField t = new JTextField(" i " + i + ", j " + j);
 				t.setFont(newTextFieldFont); //Set JTextField font using new created font
 				panel.add(t);
-//				if (i==2)   {	//To make the borders biggers for the second row
-//					  Border oldBorder = t.getBorder();
-//					  Border blackBorder = BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK); //From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
-//					  Border newBorder = BorderFactory.createCompoundBorder(blackBorder, oldBorder);
-//					  t.setBorder(newBorder);
-//				}
+				if (i==2)   {	//To make the borders biggers for the second row
+					  Border oldBorder = t.getBorder();
+					  Border blackBorder = BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK); //From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
+					  Border newBorder = BorderFactory.createCompoundBorder(blackBorder, oldBorder);
+					  t.setBorder(newBorder);
+				}
 //				if (j==3)   {	//To make the borders biggers for the second column
 //					  Border oldBorder = t.getBorder();
 //					  Border blackBorder = BorderFactory.createMatteBorder(2, 0, 0, 0, Color.BLACK);
