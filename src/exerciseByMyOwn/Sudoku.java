@@ -27,18 +27,18 @@ public class Sudoku implements ActionListener{
 				JTextField t = new JTextField(" i " + i + ", j " + j);
 				t.setFont(newTextFieldFont); //Set JTextField font using new created font
 				panel.add(t);
-				if (i==2)   {	//To make the borders biggers for the second row
+				if (j==2)   {	//To make the borders biggers for the second row
 					  Border oldBorder = t.getBorder();
 					  Border blackBorder = BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK); //From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
 					  Border newBorder = BorderFactory.createCompoundBorder(blackBorder, oldBorder);
 					  t.setBorder(newBorder);
 				}
-//				if (j==3)   {	//To make the borders biggers for the second column
-//					  Border oldBorder = t.getBorder();
-//					  Border blackBorder = BorderFactory.createMatteBorder(2, 0, 0, 0, Color.BLACK);
-//					  Border newBorder = BorderFactory.createCompoundBorder(blackBorder, oldBorder);
-//					  t.setBorder(newBorder);
-//				}
+				if (i%2==0)   {	//To make the borders biggers for the second column
+					  Border oldBorder = t.getBorder();
+					  Border blackBorder = BorderFactory.createMatteBorder(2, 0, 0, 0, Color.BLACK);
+					  Border newBorder = BorderFactory.createCompoundBorder(blackBorder, oldBorder);
+					  t.setBorder(newBorder);
+				}
 			}
 			}	
 		f.add(panel, BorderLayout.CENTER); // Adding the panel at the center of the component
