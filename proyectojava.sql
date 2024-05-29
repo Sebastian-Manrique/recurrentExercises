@@ -4,7 +4,7 @@ USE `proyectojava`;
 --
 -- Host: localhost    Database: proyectojava
 -- ------------------------------------------------------
--- Server version	8.0.36
+-- Server version	8.0.37
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,6 +42,7 @@ CREATE TABLE `envio` (
 
 LOCK TABLES `envio` WRITE;
 /*!40000 ALTER TABLE `envio` DISABLE KEYS */;
+INSERT INTO `envio` VALUES (1,2,3),(2,1,3),(3,3,4),(4,4,3);
 /*!40000 ALTER TABLE `envio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,11 +57,7 @@ CREATE TABLE `envio_historico` (
   `idEnvio` int NOT NULL,
   `idPaquete` int NOT NULL,
   `idTrabajador` int NOT NULL,
-  PRIMARY KEY (`idEnvio`),
-  KEY `paquetesFK_idx` (`idPaquete`),
-  KEY `trabajadoresFK_idx` (`idTrabajador`),
-  CONSTRAINT `paquetesFK` FOREIGN KEY (`idPaquete`) REFERENCES `paquete` (`idPaquete`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `trabajadoresFK` FOREIGN KEY (`idTrabajador`) REFERENCES `trabajadores` (`idTrabajadores`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`idEnvio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -70,7 +67,7 @@ CREATE TABLE `envio_historico` (
 
 LOCK TABLES `envio_historico` WRITE;
 /*!40000 ALTER TABLE `envio_historico` DISABLE KEYS */;
-INSERT INTO `envio_historico` VALUES (1,2,2);
+INSERT INTO `envio_historico` VALUES (1,2,3),(2,1,3),(3,3,4),(4,4,3);
 /*!40000 ALTER TABLE `envio_historico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +92,7 @@ CREATE TABLE `paquete` (
 
 LOCK TABLES `paquete` WRITE;
 /*!40000 ALTER TABLE `paquete` DISABLE KEYS */;
-INSERT INTO `paquete` VALUES (1,'Lampara',2),(2,'Sofa',100),(3,'Cama',30),(4,'Ordenador',10);
+INSERT INTO `paquete` VALUES (1,'Lampara',2),(2,'Sofa',100),(3,'Cama',30),(4,'Ordenador',10),(5,'Teclado',10),(6,'Sebastian',80);
 /*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,10 +105,10 @@ DROP TABLE IF EXISTS `trabajadores`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trabajadores` (
   `idTrabajadores` int NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `apellido` varchar(45) NOT NULL,
-  `cargo` tinyint NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  `apellido` varchar(45) DEFAULT NULL,
+  `cargo` tinyint DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idTrabajadores`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -122,7 +119,7 @@ CREATE TABLE `trabajadores` (
 
 LOCK TABLES `trabajadores` WRITE;
 /*!40000 ALTER TABLE `trabajadores` DISABLE KEYS */;
-INSERT INTO `trabajadores` VALUES (1,'Daniel','Luru',1,'1234'),(2,'Sebastian','Manrique',1,'1234'),(3,'Tymur','Kulivar',0,'1256'),(4,'Ignacio','Delgado',0,'1278');
+INSERT INTO `trabajadores` VALUES (1,'Daniel','Luru',1,'1234'),(2,'Sebastian','Manrique',1,'1234'),(3,'Tymur','Kulivar',0,'1256'),(4,'Ignacio','Delgado',0,'1256'),(5,'Sergio','Torres',0,'123456'),(12,'Dani','Jorgiño',1,'999'),(45,NULL,NULL,NULL,NULL),(66,NULL,NULL,NULL,NULL),(467,NULL,NULL,NULL,NULL),(536,NULL,NULL,NULL,NULL),(1234,'gasdg','asrghqae',0,'asedfgaw'),(2345,NULL,NULL,NULL,NULL),(3456,NULL,NULL,NULL,NULL),(4672,NULL,NULL,NULL,NULL),(5245,NULL,NULL,NULL,NULL),(21345,'asga','asgqawrg',0,'aseg'),(23456,NULL,NULL,NULL,NULL),(364537,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `trabajadores` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -135,4 +132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-28  1:10:32
+-- Dump completed on 2024-05-29  3:26:52
