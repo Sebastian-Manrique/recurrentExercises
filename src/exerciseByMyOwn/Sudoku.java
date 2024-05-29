@@ -41,15 +41,18 @@ public class Sudoku implements ActionListener{
 			for (int j = 0; j < 6; j++) { // Column
 				JTextField t = new JTextField("i " + i + ", j " + j);
 				t.setFont(newTextFieldFont); // Set JTextField font using new created font
+				int[] intToPut = new int[]{ 1,2,3,4,5,6,7,8,9,10 }; 
+				int[] intPut = new int[]{}; 
 				if (j < 3) {
-					t = new JTextField("i " + i + ", j " + j);
+					t = new JTextField(""+intToPut[j]);
 					t.setEditable(false);
 					Border oldBorder = t.getBorder();
 					Border blackBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.PINK); // From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
 					Border newBorder = BorderFactory.createCompoundBorder(blackBorder, oldBorder);
 					t.setBorder(newBorder);
+					
 				} else if (j >= 3) {
-					t = new JTextField("i " + i + ", j " + j);
+					t = new JTextField(""+intToPut[j]);
 					t.setEditable(false);
 					Border oldBorder = t.getBorder();
 					Border blackBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.GREEN); // From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
