@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
@@ -40,34 +41,27 @@ public class Sudoku implements ActionListener{
 		Font newTextFieldFont = new Font("Roboto", Font.PLAIN, 30);// Create font. Code from https://java2everyone.blogspot.com/2008/12/set-jtextfield-text-size.html
 		JPanel panel = new JPanel(new GridLayout(6, 6));
 		for (int i = 0; i < 6; i++) { // Row
+			ArrayList<Integer> intDestination = new ArrayList<Integer>();
 			for (int j = 0; j < 6; j++) { // Column
 				JTextField t = new JTextField("i " + i + ", j " + j);
 				t.setFont(newTextFieldFont); // Set JTextField font using new created font
-				int[] intToPut = new int[] { 1, 2, 3, 4, 5, 6 };
-				int[] intDestination = new int[] {6};
 				if (j < 3) {
 					int random = rand.nextInt(1, 7);
-					for (int k = 0; k < intDestination.length; k++) {
-						if (intDestination[k] != random) {
-							System.out.println("Repe " + random);
-						} else {
-							for (int k2 = 0; k2 < intDestination.length; k2++) {
-								intDestination[k2] = random;
-							}
-							t = new JTextField("" + random);
-						}
+					boolean repe = isRandomReped(intDestination, random);
+					if (!repe) { // If false
+						intDestination.add(random);
+						t = new JTextField("i " + i + ", j " + j);
 					}
 					for (int forRunner : intDestination) {
 						System.out.println("Inside of the destination for " + forRunner);
 					}
 					t.setEditable(false);
 					Border oldBorder = t.getBorder();
-					Border blackBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.PINK); // From
-																									// https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
+					Border blackBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.PINK); // From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
 					Border newBorder = BorderFactory.createCompoundBorder(blackBorder, oldBorder);
 					t.setBorder(newBorder);
 				} else if (j >= 3) {
-					t = new JTextField("" + intToPut[j]);
+					t = new JTextField("i " + i + ", j " + j);
 					t.setEditable(false);
 					Border oldBorder = t.getBorder();
 					Border blackBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.GREEN); // From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
@@ -94,6 +88,16 @@ public class Sudoku implements ActionListener{
 	    button.addActionListener(this);
 	    f.add(button, BorderLayout.SOUTH); // Añadir el botón al fondo del contenedor principal
         
+	}
+	private boolean isRandomReped(ArrayList<Integer> intDestination, int random) {
+		for (int k = 0; k < intDestination.size(); k++) {
+			System.out.println("Entrando en el bucle k1");
+			if (intDestination.get(k) == random) {
+				System.out.println("Repe " + random);
+				return true;
+			}
+		}
+		return false;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) { //The buttom do this
