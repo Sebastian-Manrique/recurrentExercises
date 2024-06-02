@@ -80,7 +80,7 @@ public class Sudoku extends javax.swing.JFrame {
 	private boolean isRepedRows(ArrayList<Integer> intDestination, int number) { // This method has the random and the array to prove its not repeated
 		for (int k = 0; k < intDestination.size(); k++) {
 			if (intDestination.get(k) == number) {
-				System.out.println("Repe " + number);
+				System.out.println("Repe rows " + number);
 				return true;
 			}
 		}
