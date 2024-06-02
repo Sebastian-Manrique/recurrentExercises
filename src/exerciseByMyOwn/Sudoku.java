@@ -33,7 +33,6 @@ public class Sudoku extends javax.swing.JFrame {
 			for (int j = 0; j < 6; j++) { // Column
 				t = new JTextField();
 				t.setFont(roboto); // Set JTextField font using new created font
-				if (j < 3) {
 					boolean repeRows = false;
 					boolean repeColumns = false;
 					do {
@@ -48,29 +47,9 @@ public class Sudoku extends javax.swing.JFrame {
 					} while (repeRows || repeColumns);
 					t.setEditable(false);
 					Border oldBorder = t.getBorder();
-					Border pinkBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.PINK); // From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
-					Border newBorder = BorderFactory.createCompoundBorder(pinkBorder, oldBorder);
+					Border grayBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.gray); // From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
+					Border newBorder = BorderFactory.createCompoundBorder(grayBorder, oldBorder);
 					t.setBorder(newBorder);
-					columnOfTheSudoku(i, t);
-				} else if (j >= 3) {
-					Border oldBorder = t.getBorder();
-					Border greenBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.GREEN);
-					Border newBorder = BorderFactory.createCompoundBorder(greenBorder, oldBorder);
-//					t.setBorder(newBorder);
-					boolean repe = false;
-					do {
-						int random = rand.nextInt(1, 7);
-						repe = isRandomRepedRows(intDestination, random);
-						if (!repe) { // If repe is false
-							intDestination.add(random);
-							t = new JTextField("" + random);
-							t.setFont(roboto);
-						}
-					} while (repe);
-					t.setEditable(false);
-					t.setBorder(newBorder);
-					columnOfTheSudoku(i, t);
-				}
 				panel.add(t);
 				linesMethod(i, j, t);
 			}
@@ -81,15 +60,6 @@ public class Sudoku extends javax.swing.JFrame {
 		actionListenerMethod(button, t);
 
 		f.add(button, BorderLayout.SOUTH); // Añadir el botón al fondo del contenedor principal
-	}
-	
-	private void columnOfTheSudoku(int i, JTextField t) {
-		if (i==0 || i==1) {
-			Border oldBorder = t.getBorder();
-			Border pinkBorder = BorderFactory.createMatteBorder(0, 2, 0, 0, Color.BLUE);
-			Border newBorder = BorderFactory.createCompoundBorder(pinkBorder, oldBorder);
-			t.setBorder(newBorder);
-		}
 	}
 
 	private void screenMethod() {
