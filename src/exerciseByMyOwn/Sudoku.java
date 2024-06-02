@@ -24,41 +24,42 @@ public class Sudoku extends javax.swing.JFrame {
 	public Sudoku() {
 		screenMethod();
 		Random rand = new Random();
-		Font roboto = new Font("Roboto", Font.PLAIN, 30);// Create font. Code from https://java2everyone.blogspot.com/2008/12/set-jtextfield-text-size.html
+		// Create font. Code from https://java2everyone.blogspot.com/2008/12/set-jtextfield-text-size.html
+		Font roboto = new Font("Roboto", Font.PLAIN, 30);
 		JPanel panel = new JPanel(new GridLayout(6, 6));
 		JTextField t = new JTextField();
-		ArrayList<ArrayList<Integer>> intAlreadyIn = new ArrayList<ArrayList<Integer>>();
-		for (int i = 0; i < 6; i++) { // Row
+		ArrayList<ArrayList<Integer>> alreadyIn = new ArrayList<ArrayList<Integer>>();
+		for (int number = 1; number <= 6; number++) { // Number
 			ArrayList<Integer> intDestination = new ArrayList<Integer>();
-			for (int j = 0; j < 6; j++) { // Column
+			for (int row = 0; row < 6; row++) { // Rows
 				t = new JTextField();
 				t.setFont(roboto); // Set JTextField font using new created font
-					boolean repeRows = false;
-					boolean repeColumns = false;
-					do {
-						int random = rand.nextInt(1, 7);
-						repeRows = isRandomRepedRows(intDestination, random);
-						repeColumns = isRandomRepedColumns(intAlreadyIn, random, j);
-						if (!repeRows && !repeColumns) { // If repe is false
-							intDestination.add(random);
-							t = new JTextField("" + random);
-							t.setFont(roboto);
-						}
-					} while (repeRows || repeColumns);
-					t.setEditable(false);
-					Border oldBorder = t.getBorder();
-					Border grayBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.gray); // From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
-					Border newBorder = BorderFactory.createCompoundBorder(grayBorder, oldBorder);
-					t.setBorder(newBorder);
+				boolean repeRows = false;
+				boolean repeColumns = false;
+				do {
+					int col = rand.nextInt(1, 7);
+					repeRows = isRepedRows(intDestination, number);
+					repeColumns = isRepedColumns(alreadyIn, number, col);
+					if (!repeRows && !repeColumns) { // If repe is false
+						intDestination.add(col);
+						t = new JTextField("" + col);
+						t.setFont(roboto);
+					}
+				} while (repeRows || repeColumns);
+				t.setEditable(false);
+				// From https://stackoverflow.com/questions/11935188/is-there-any-way-to-get-one-sidei-e-right-bordered-line-of-the-jtextfield-co
+				Border oldBorder = t.getBorder();
+				Border grayBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.gray); 
+				Border newBorder = BorderFactory.createCompoundBorder(grayBorder, oldBorder);
+				t.setBorder(newBorder);
 				panel.add(t);
-				linesMethod(i, j, t);
+				linesMethod(number, row, t);
 			}
-			intAlreadyIn.add(intDestination);
+			alreadyIn.add(intDestination);
 		}
 		f.add(panel, BorderLayout.CENTER); // Adding the panel at the center of the component
 		button.setFocusable(false);
 		actionListenerMethod(button, t);
-
 		f.add(button, BorderLayout.SOUTH); // Añadir el botón al fondo del contenedor principal
 	}
 
@@ -76,20 +77,20 @@ public class Sudoku extends javax.swing.JFrame {
 		f.setSize(600, 650);
 	}
 	
-	private boolean isRandomRepedRows(ArrayList<Integer> intDestination, int random) { // This method has the random and the array to prove its not repeated
+	private boolean isRepedRows(ArrayList<Integer> intDestination, int number) { // This method has the random and the array to prove its not repeated
 		for (int k = 0; k < intDestination.size(); k++) {
-			if (intDestination.get(k) == random) {
-				System.out.println("Repe " + random);
+			if (intDestination.get(k) == number) {
+				System.out.println("Repe " + number);
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private boolean isRandomRepedColumns(ArrayList<ArrayList<Integer>> intAlreadyIn, int random, int j) { // This method has the random and the array to prove its not repeated
+	private boolean isRepedColumns(ArrayList<ArrayList<Integer>> intAlreadyIn, int number, int col) { // This method has the random and the array to prove its not repeated
 		for (int k = 0; k < intAlreadyIn.size(); k++) {
-			if (intAlreadyIn.get(k).get(j) == random) {
-				System.out.println("Repe columns " + random);
+			if (intAlreadyIn.get(k).get(col) == number) {
+				System.out.println("Repe columns " + number);
 				return true;
 			}
 		}
