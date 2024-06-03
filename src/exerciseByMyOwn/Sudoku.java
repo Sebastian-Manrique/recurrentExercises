@@ -70,7 +70,7 @@ public class Sudoku extends javax.swing.JFrame {
 		int x = bounds.x + bounds.width - insets.right - f.getWidth();
 		int y =  bounds.y + bounds.height - insets.top - f.getHeight(); // I just do that copying the int x and changing the values
 		f.setLocation(x/3, y/3-100);
-		ImageIcon img = new ImageIcon("images&Fonts/sudokuIcon.png");
+		ImageIcon img = new ImageIcon("imagesAndText/sudokuIcon.png");
 		f.setIconImage(img.getImage());
 		f.setTitle("Sudoku");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close on exit
