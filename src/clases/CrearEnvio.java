@@ -154,37 +154,32 @@ public class CrearEnvio extends JFrame {
 		actualizarTablaEnvios(tabla2);
 		
 	}
-	
 	public void actualizarTablaEmpleados(DefaultTableModel tabla) {
         
 //		tabla.addRow(titulos);
 		tabla = new DefaultTableModel(null, titulos);
 
-      try {
-      	Connection c = DriverManager.getConnection(url, "root", "1234");
-      	Statement st = c.createStatement();
-          String sSQL = "SELECT * FROM TRABAJADORES";
-          ResultSet rs = st.executeQuery(sSQL);
-          
-          while(rs.next()) {
-              datos[0]=rs.getString("idTrabajadores");
-              datos[1]=rs.getString("nombre");
-              datos[2]=rs.getString("apellido");
-              datos[3]=rs.getString("cargo");
-              datos[4]=rs.getString("password");
-              String data = rs.getString("idTrabajadores")+" "+rs.getString(");
-              for(String dato:datos) {
-              	System.out.println(dato);
-              	
-              }
-              tabla.addRow(datos);
-          }
-
-          table.setModel(tabla);
-      } catch (Exception e) {
-          // TODO: handle exception
-      	System.out.println(e.getMessage());
-      }
+		try {
+			Connection c = DriverManager.getConnection(url, "root", "1234");
+			Statement st = c.createStatement();
+			String sSQL = "SELECT * FROM TRABAJADORES";
+			ResultSet rs = st.executeQuery(sSQL);
+			while (rs.next()) {
+				datos[0] = rs.getString("idTrabajadores");
+				datos[1] = rs.getString("nombre");
+				datos[2] = rs.getString("apellido");
+				datos[3] = rs.getString("cargo");
+				datos[4] = rs.getString("password");
+				String data = rs.getString("idTrabajadores") + " " + rs.getString("idTrabajadores") + " "
+						+ rs.getString("nombre") + " " + rs.getString("apellido") + " " + rs.getString("cargo") + " "
+						+ rs.getString("password");
+				System.out.println(data);
+				tabla.addRow(datos);
+			}
+			table.setModel(tabla);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 }
 	
 public void actualizarTablaPaquetes(DefaultTableModel tabla1) {
