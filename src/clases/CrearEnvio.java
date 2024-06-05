@@ -132,6 +132,19 @@ public class CrearEnvio extends JFrame {
 		});
 		btnNewButton.setBounds(810, 9, 147, 37);
 		contentPane.add(btnNewButton);
+		
+		JButton guardarEnFicheroBtn = new JButton("Guardar en un fichero");
+		guardarEnFicheroBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				crearFichero();
+			}
+
+			private void crearFichero() {
+				
+			}
+		});
+		guardarEnFicheroBtn.setBounds(405, 382, 159, 55);
+		contentPane.add(guardarEnFicheroBtn);
 		setLocationRelativeTo(null);
 		
 		
@@ -159,6 +172,7 @@ public class CrearEnvio extends JFrame {
               datos[2]=rs.getString("apellido");
               datos[3]=rs.getString("cargo");
               datos[4]=rs.getString("password");
+              String data = rs.getString("idTrabajadores")+" "+rs.getString(");
               for(String dato:datos) {
               	System.out.println(dato);
               	
