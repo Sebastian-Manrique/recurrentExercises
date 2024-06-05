@@ -9,7 +9,6 @@ import clases.PanelRepartidor;
 public class javaSwingParaSQL{
     public static void main(String[] args) {
  
-    	CrearEnvio iniciar = new CrearEnvio();
-    	
+    	ButtonWindow iniciar = new ButtonWindow();
     }
 }

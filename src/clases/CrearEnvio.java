@@ -1,7 +1,5 @@
 package clases;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,14 +12,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class CrearEnvio extends JFrame {
@@ -127,7 +130,7 @@ public class CrearEnvio extends JFrame {
 				String idEmp = textField_2.getText();
 				Envio envio = new Envio(idEnvio, idPaq, idEmp);
 				sql.crearEnvio(envio);
-				actualizarTablaEnvios(tabla2);
+				actualizarTablaEnvios(tabla2,0);
 			}
 		});
 		btnNewButton.setBounds(810, 9, 147, 37);
@@ -136,27 +139,36 @@ public class CrearEnvio extends JFrame {
 		JButton guardarEnFicheroBtn = new JButton("Guardar en un fichero");
 		guardarEnFicheroBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				crearFichero();
-			}
-
-			private void crearFichero() {
-				
+				int ans = Integer.parseInt(JOptionPane.showInputDialog(null, "Que quieres\n1.Empleados\n2.Paquetes\n3.Envios"));
+				switch (ans) {
+				case 1: {
+					actualizarTablaEmpleados(tabla, 1);
+					break;
+				}
+				case 2: {
+					actualizarTablaPaquetes(tabla1, 2);
+					break;
+				}
+				case 3: {
+					actualizarTablaEnvios(tabla2, 3);
+					break;
+				}
+				default:
+					throw new IllegalArgumentException("Unexpected value: " + ans);
+				}
 			}
 		});
 		guardarEnFicheroBtn.setBounds(405, 382, 159, 55);
 		contentPane.add(guardarEnFicheroBtn);
 		setLocationRelativeTo(null);
 		
-		
-		
-		actualizarTablaEmpleados(tabla);
-		actualizarTablaPaquetes(tabla1);
-		actualizarTablaEnvios(tabla2);
+		actualizarTablaEmpleados(tabla, 0);
+		actualizarTablaPaquetes(tabla1, 0);
+		actualizarTablaEnvios(tabla2, 0);
 		
 	}
-	public void actualizarTablaEmpleados(DefaultTableModel tabla) {
+	public void actualizarTablaEmpleados(DefaultTableModel tabla, int imprime) {
         
-//		tabla.addRow(titulos);
 		tabla = new DefaultTableModel(null, titulos);
 
 		try {
@@ -170,21 +182,23 @@ public class CrearEnvio extends JFrame {
 				datos[2] = rs.getString("apellido");
 				datos[3] = rs.getString("cargo");
 				datos[4] = rs.getString("password");
-				String data = rs.getString("idTrabajadores") + " " + rs.getString("idTrabajadores") + " "
-						+ rs.getString("nombre") + " " + rs.getString("apellido") + " " + rs.getString("cargo") + " "
-						+ rs.getString("password");
-				System.out.println(data);
+				if (imprime==1) {
+					String data = rs.getString("idTrabajadores") + " " + rs.getString("nombre") + " "
+							+ rs.getString("apellido") + " " + rs.getString("cargo") + " " + rs.getString("password");
+					ArrayList<String> datosFileArrayList = new ArrayList<String>();
+					datosFileArrayList.add(data);
+					mtdFileWriter(datosFileArrayList, "trabajadores");
+				}
 				tabla.addRow(datos);
 			}
 			table.setModel(tabla);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-}
+}	
+
+public void actualizarTablaPaquetes(DefaultTableModel tabla1,  int imprime) {
 	
-public void actualizarTablaPaquetes(DefaultTableModel tabla1) {
-        
-//		tabla1.addRow(titulos);
 		tabla1 = new DefaultTableModel(null, titulos1);
 
       try {
@@ -197,6 +211,14 @@ public void actualizarTablaPaquetes(DefaultTableModel tabla1) {
               datos1[0]=rs.getString("idPaquete");
               datos1[1]=rs.getString("nombrePaquete");
               datos1[2]=rs.getString("pesoPaquete");
+              if (imprime==2) {
+            	  String data = rs.getString("idPaquete") + " " + rs.getString("nombrePaquete") + " "
+  						+ rs.getString("pesoPaquete");
+  				ArrayList<String> datosFileArrayList = new ArrayList<String>();
+  				datosFileArrayList.add(data);
+  				mtdFileWriter(datosFileArrayList, "paquetes");
+              }
+              
               for(String dato:datos1) {
               	System.out.println(dato);
               	
@@ -206,37 +228,70 @@ public void actualizarTablaPaquetes(DefaultTableModel tabla1) {
 
           table_1.setModel(tabla1);
       } catch (Exception e) {
-          // TODO: handle exception
       	System.out.println(e.getMessage());
       }
 }
 
-public void actualizarTablaEnvios(DefaultTableModel tabla2) {
-    
-//	tabla.addRow(titulos);
+public void actualizarTablaEnvios(DefaultTableModel tabla2,  int imprime) {
 	tabla2 = new DefaultTableModel(null, titulos2);
+	try {
+		Connection c = DriverManager.getConnection(url, "root", "1234");
+		Statement st = c.createStatement();
+		String sSQL = "SELECT * FROM Envio";
+		ResultSet rs = st.executeQuery(sSQL);
 
-  try {
-  	Connection c = DriverManager.getConnection(url, "root", "1234");
-  	Statement st = c.createStatement();
-      String sSQL = "SELECT * FROM Envio";
-      ResultSet rs = st.executeQuery(sSQL);
-      
-      while(rs.next()) {
-          datos2[0]=rs.getString("idEnvio");
-          datos2[1]=rs.getString("idPaquete");
-          datos2[2]=rs.getString("idTrabajador");
-          for(String dato:datos2) {
-          	System.out.println(dato);
-          	
-          }
-          tabla2.addRow(datos2);
-      }
+		while (rs.next()) {
+			datos2[0] = rs.getString("idEnvio");
+			datos2[1] = rs.getString("idPaquete");
+			datos2[2] = rs.getString("idTrabajador");
+			if (imprime==3) {
+				String data = rs.getString("idEnvio") + " " + rs.getString("idPaquete") + " "
+						+ rs.getString("idTrabajador");
+				System.out.println(data);
+				ArrayList<String> datosFileArrayList = new ArrayList<String>();
+				datosFileArrayList.add(data);
+				mtdFileWriter(datosFileArrayList, "envios");
+			}
+			for (String dato : datos2) {
+				System.out.println(dato);
 
-      table_2.setModel(tabla2);
-  } catch (Exception e) {
-      // TODO: handle exception
-  	System.out.println(e.getMessage());
-  }
+			}
+			tabla2.addRow(datos2);
+		}
+		table_2.setModel(tabla2);
+	} catch (Exception e) {
+		System.out.println(e.getMessage());
+	}
+}
+private void mtdFileWriter(ArrayList<String> datosFileArrayList, String deDondeVienen) {
+	try {
+		if (deDondeVienen.equals("trabajadores")) {
+			File trabajadoresFile = new File("trabajadores.txt");
+			createTheFile(datosFileArrayList, trabajadoresFile);
+		} else if (deDondeVienen.equals("paquetes")) {
+			File paquetesFile = new File("paquetes.txt");
+			createTheFile(datosFileArrayList, paquetesFile);
+		} else {
+			File enviosFile = new File("envios.txt");
+			createTheFile(datosFileArrayList ,enviosFile);
+		}
+	} catch (Exception e) {
+	}
+}
+private void createTheFile(ArrayList<String> datosFileArrayList, File enviosFile) {
+	try {
+		FileWriter myWrite = new FileWriter(enviosFile);
+		if (enviosFile.getName() == "trabajadores.txt") {
+			myWrite.write("Id 	Nombre	Apellido	Cargo	Contraseña\n");
+		}
+		for (String string : datosFileArrayList) {
+			System.out.println(string);
+			myWrite.write(string);
+		}
+		myWrite.close();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+
 }
 }
