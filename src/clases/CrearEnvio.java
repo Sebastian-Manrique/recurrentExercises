@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -218,7 +219,6 @@ public void actualizarTablaPaquetes(DefaultTableModel tabla1,  int imprime) {
   				datosFileArrayList.add(data);
   				mtdFileWriter(datosFileArrayList, "paquetes");
               }
-              
               for(String dato:datos1) {
               	System.out.println(dato);
               	
@@ -247,14 +247,10 @@ public void actualizarTablaEnvios(DefaultTableModel tabla2,  int imprime) {
 			if (imprime==3) {
 				String data = rs.getString("idEnvio") + " " + rs.getString("idPaquete") + " "
 						+ rs.getString("idTrabajador");
-				System.out.println(data);
+				System.out.println("DTA "+data);
 				ArrayList<String> datosFileArrayList = new ArrayList<String>();
 				datosFileArrayList.add(data);
 				mtdFileWriter(datosFileArrayList, "envios");
-			}
-			for (String dato : datos2) {
-				System.out.println(dato);
-
 			}
 			tabla2.addRow(datos2);
 		}
@@ -271,6 +267,7 @@ private void mtdFileWriter(ArrayList<String> datosFileArrayList, String deDondeV
 		} else if (deDondeVienen.equals("paquetes")) {
 			File paquetesFile = new File("paquetes.txt");
 			createTheFile(datosFileArrayList, paquetesFile);
+			System.out.println("Grande del ArrayList: "+datosFileArrayList.size());
 		} else {
 			File enviosFile = new File("envios.txt");
 			createTheFile(datosFileArrayList ,enviosFile);
@@ -278,20 +275,27 @@ private void mtdFileWriter(ArrayList<String> datosFileArrayList, String deDondeV
 	} catch (Exception e) {
 	}
 }
+
 private void createTheFile(ArrayList<String> datosFileArrayList, File enviosFile) {
+	int veces=0;
 	try {
-		FileWriter myWrite = new FileWriter(enviosFile);
+		BufferedWriter myWrite = new BufferedWriter(new FileWriter(enviosFile, true));
 		if (enviosFile.getName() == "trabajadores.txt") {
-			myWrite.write("Id 	Nombre	Apellido	Cargo	Contraseña\n");
+			myWrite.write("TETASTETASTETASTETASTETASTETASTETASTETASTETAS\n");
+			System.out.println(enviosFile.getName());
+		} else if (enviosFile.getName() == "paquetes.txt") {
+			myWrite.write("IdPaquete 	NombrePaquete	PesoPaquete\n");
+		} else {
+			myWrite.write("IdEnvio	IdPaquete	IdTrabajador\n");
+			veces+=1;
+			System.out.println("Veces "+veces);
 		}
 		for (String string : datosFileArrayList) {
-			System.out.println(string);
-			myWrite.write(string);
+			myWrite.write(string+"\n");
 		}
 		myWrite.close();
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
-
 }
 }
