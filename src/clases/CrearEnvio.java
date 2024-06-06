@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -162,7 +163,7 @@ public class CrearEnvio extends JFrame {
 	public void actualizarTablaEmpleados(DefaultTableModel tabla, int imprime) {
 
 		tabla = new DefaultTableModel(null, titulos);
-		
+
 		try {
 			ArrayList<String> datosFileArrayList = new ArrayList<String>();
 			Connection c = DriverManager.getConnection(url, "root", "1234");
@@ -265,15 +266,37 @@ public class CrearEnvio extends JFrame {
 		try {
 			BufferedWriter myWrite = new BufferedWriter(new FileWriter(enviosFile, true));
 			if (enviosFile.getName() == "trabajadores.txt") {
-				myWrite.write("IdTrabajador		Nombre		Apellido	Cargo	Contraseña\n");
+				myWrite.write(
+						"IdTrabajador            Nombre            Apellido            Cargo            Contraseña\n");
 			} else if (enviosFile.getName() == "paquetes.txt") {
 				myWrite.write("IdPaquete 	NombrePaquete	PesoPaquete\n");
 			} else {
 				myWrite.write("IdEnvio	IdPaquete	IdTrabajador\n");
 			}
-			for (String string : datosFileArrayList) {
-				myWrite.write(string + "\n");
+			for (String value : datosFileArrayList) {
+			    int spaceCount = 0;
+
+			    // Dividir la cadena en palabras usando el espacio como delimitador
+			    String[] words = value.split(" ");
+
+			    // Procesar cada palabra individualmente
+			    for (String word : words) {
+			    	char c ='S';
+			    	String word2 = word+c;
+			        // Aquí puedes hacer algo con cada palabra si es necesario
+			        // Por ejemplo, escribir cada palabra en un nuevo archivo
+			        myWrite.write(word2 + "\n");
+			    }
+
+			    // Contar los espacios en la cadena original
+			    for (char c : value.toCharArray()) {
+			        if (c == ' ') {
+			            spaceCount++;
+			        }
+			    }
+			    System.out.println("Espacios: " + spaceCount);
 			}
+
 			myWrite.close();
 		} catch (IOException e) {
 			e.printStackTrace();
