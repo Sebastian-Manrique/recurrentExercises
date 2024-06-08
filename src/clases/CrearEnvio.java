@@ -182,6 +182,7 @@ public class CrearEnvio extends JFrame {
 				tabla.addRow(datos);
 			}
 			if (imprime == 1) {
+				System.out.println("Guardando datos para el archivo");
 				mtdFileWriter(datosFileArrayList, "trabajadores");
 			}
 			table.setModel(tabla);
@@ -248,6 +249,7 @@ public class CrearEnvio extends JFrame {
 	private void mtdFileWriter(ArrayList<String> datosFileArrayList, String deDondeVienen) {
 		try {
 			if (deDondeVienen.equals("trabajadores")) {
+				System.out.println("Archivo creado");
 				File trabajadoresFile = new File("trabajadores.txt");
 				createTheFile(datosFileArrayList, trabajadoresFile);
 			} else if (deDondeVienen.equals("paquetes")) {
@@ -258,45 +260,47 @@ public class CrearEnvio extends JFrame {
 				File enviosFile = new File("envios.txt");
 				createTheFile(datosFileArrayList, enviosFile);
 			}
-		} catch (Exception e) {
+		} catch (Exception e) { e.printStackTrace();
 		}
 	}
 
 	private void createTheFile(ArrayList<String> datosFileArrayList, File enviosFile) {
 		try {
-			BufferedWriter myWrite = new BufferedWriter(new FileWriter(enviosFile, true));
+			BufferedWriter myWrite = new BufferedWriter(new FileWriter(enviosFile, false));
 			if (enviosFile.getName() == "trabajadores.txt") {
+				System.out.println("Poniendo el encabezado");
 				myWrite.write(
-						"IdTrabajador            Nombre            Apellido            Cargo            Contraseña\n");
+						"IdTrabajador  Nombre        Apellido      Cargo         Contraseña");
 			} else if (enviosFile.getName() == "paquetes.txt") {
-				myWrite.write("IdPaquete 	NombrePaquete	PesoPaquete\n");
+				myWrite.write("IdPaquete 	NombrePaquete	PesoPaquete");
 			} else {
-				myWrite.write("IdEnvio	IdPaquete	IdTrabajador\n");
+				myWrite.write("IdEnvio	IdPaquete	IdTrabajador");
 			}
+			System.out.println("Apuntito de leer");
 			for (String value : datosFileArrayList) {
-			    int spaceCount = 0;
-
-			    // Dividir la cadena en palabras usando el espacio como delimitador
-			    String[] words = value.split(" ");
-
-			    // Procesar cada palabra individualmente
-			    for (String word : words) {
-			    	char c ='S';
-			    	String word2 = word+c;
-			        // Aquí puedes hacer algo con cada palabra si es necesario
-			        // Por ejemplo, escribir cada palabra en un nuevo archivo
-			        myWrite.write(word2 + "\n");
-			    }
-
-			    // Contar los espacios en la cadena original
-			    for (char c : value.toCharArray()) {
-			        if (c == ' ') {
-			            spaceCount++;
-			        }
-			    }
-			    System.out.println("Espacios: " + spaceCount);
+				System.out.println("Leyendo");
+				String[] words = value.split(" ");// Dividir la cadena en palabras usando el espacio como delimitador
+				for (int i = 0; i < words.length; i++) {
+					if (i % 5==0) {
+						String word2 = "\n";
+						System.out.println("SALTO DE LINEA: "+word2);
+						myWrite.write(word2);
+					}
+					if (words[i].length() < 14) {
+						// Añade los espacio hasta llegar a 14
+						String word2 = words[i] + " ".repeat(14 - words[i].length());
+						System.out.println(word2);
+						myWrite.write(word2);
+					}
+				}
+//			    for (String word : words) {	// Procesar cada palabra individualmente
+//			    	String word2 = allSameLengthOfString(word);	 // Aquí puedes hacer algo con cada palabra si es necesario
+//			        	 // Por ejemplo, escribir cada palabra en un nuevo archivo
+//			        System.out.println(word2);
+//			    }
+				// Contar los espacios en la cadena original
 			}
-
+			System.out.println("Cerrando writer");
 			myWrite.close();
 		} catch (IOException e) {
 			e.printStackTrace();
