@@ -16,8 +16,6 @@ import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 public class ButtonWindow extends JFrame{
-	ImageIcon ImageIcon = new ImageIcon("imagen2.png");
-	Image Image = ImageIcon.getImage();
 	public ButtonWindow() {
 		JFrame frmButtons = new JFrame();
 		frmButtons.setTitle("Buttons");
@@ -97,7 +95,7 @@ public class ButtonWindow extends JFrame{
 		JButton btnNewButton_7 = new JButton("Modificar Contraseña");
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ModificarContraseñas psContraseñas = new ModificarContraseñas();
+				ModificarPassword psPassword = new ModificarPassword();
 			}
 		});
 		btnNewButton_7.setBounds(26, 498, 161, 39);

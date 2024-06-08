@@ -21,6 +21,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -130,24 +134,7 @@ public class CrearEnvio extends JFrame {
 		JButton guardarEnFicheroBtn = new JButton("Guardar en un fichero");
 		guardarEnFicheroBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int ans = Integer
-						.parseInt(JOptionPane.showInputDialog(null, "Que quieres\n1.Empleados\n2.Paquetes\n3.Envios"));
-				switch (ans) {
-				case 1: {
-					actualizarTablaEmpleados(tabla, 1);
-					break;
-				}
-				case 2: {
-					actualizarTablaPaquetes(tabla1, 2);
-					break;
-				}
-				case 3: {
-					actualizarTablaEnvios(tabla2, 3);
-					break;
-				}
-				default:
-					throw new IllegalArgumentException("Unexpected value: " + ans);
-				}
+				botonesDeGuardarArchivo(tabla, tabla1, tabla2);
 			}
 		});
 		guardarEnFicheroBtn.setBounds(405, 382, 159, 55);
@@ -159,6 +146,49 @@ public class CrearEnvio extends JFrame {
 		actualizarTablaEnvios(tabla2, 0);
 
 	}
+	 public void botonesDeGuardarArchivo(DefaultTableModel tabla, DefaultTableModel tabla1, DefaultTableModel tabla2) {
+	        JFrame frame = new JFrame();
+	        frame.setVisible(true);
+	        frame.setTitle("CORREOS WANNABE");
+	        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(CrearEnvio.class.getResource("/imagenes/imagen2.png")));
+	        frame.setSize(500, 150);
+	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.getContentPane().setLayout(null);
+
+	        // Creación de botones
+	        JButton buttonEmpleados = new JButton("Empleados");
+	        buttonEmpleados.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                actualizarTablaEmpleados(tabla, 1);
+	                frame.dispose();
+	            }
+	        });
+	        buttonEmpleados.setBounds(25, 35, 134, 44);
+	        frame.getContentPane().add(buttonEmpleados);
+
+	        JButton buttonPaquetes = new JButton("Paquetes");
+	        buttonPaquetes.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                actualizarTablaPaquetes(tabla1, 2);
+	                frame.dispose();
+	            }
+	        });
+	        buttonPaquetes.setBounds(325, 35, 134, 44);
+	        frame.getContentPane().add(buttonPaquetes);
+
+	        JButton buttonEnvios = new JButton("Envios");
+	        buttonEnvios.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                actualizarTablaEnvios(tabla2, 3);
+	                frame.dispose();
+	            }
+	        });
+	        buttonEnvios.setBounds(175, 35, 134, 44);
+	        frame.getContentPane().add(buttonEnvios);
+	        
+	        // Centrar la ventana en la pantalla
+	        frame.setLocationRelativeTo(null);
+	    }
 
 	public void actualizarTablaEmpleados(DefaultTableModel tabla, int imprime) {
 

@@ -23,7 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
-public class ModificarContraseñas extends JFrame {
+public class ModificarPassword extends JFrame {
 
 	static String url = "jdbc:mysql://localhost:3306/proyectojava";
 	
@@ -43,7 +43,7 @@ public class ModificarContraseñas extends JFrame {
 	 */
 	public static void main(String[] args) {
 				try {
-					ModificarContraseñas frame = new ModificarContraseñas();
+					ModificarPassword frame = new ModificarPassword();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,8 +52,8 @@ public class ModificarContraseñas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ModificarContraseñas() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ModificarContraseñas.class.getResource("/imagenes/imagen.png")));
+	public ModificarPassword() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ModificarPassword.class.getResource("/imagenes/imagen.png")));
 		setTitle("CORREOS WANNABE");
 		setVisible(true);
 		setBounds(100, 100, 629, 424);
