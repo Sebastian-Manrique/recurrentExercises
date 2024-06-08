@@ -260,7 +260,8 @@ public class CrearEnvio extends JFrame {
 				File enviosFile = new File("envios.txt");
 				createTheFile(datosFileArrayList, enviosFile);
 			}
-		} catch (Exception e) { e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -268,23 +269,28 @@ public class CrearEnvio extends JFrame {
 		try {
 			BufferedWriter myWrite = new BufferedWriter(new FileWriter(enviosFile, false));
 			if (enviosFile.getName() == "trabajadores.txt") {
-				System.out.println("Poniendo el encabezado");
-				myWrite.write(
-						"IdTrabajador  Nombre        Apellido      Cargo         Contraseña");
+				myWrite.write("IdTrabajador  Nombre        Apellido      Cargo         Contraseña");
 			} else if (enviosFile.getName() == "paquetes.txt") {
-				myWrite.write("IdPaquete 	NombrePaquete	PesoPaquete");
+				myWrite.write("IdPaquete     NombrePaquete PesoPaquete");
 			} else {
-				myWrite.write("IdEnvio	IdPaquete	IdTrabajador");
+				myWrite.write("IdEnvio	      IdPaquete	   IdTrabajador");
 			}
-			System.out.println("Apuntito de leer");
 			for (String value : datosFileArrayList) {
 				System.out.println("Leyendo");
 				String[] words = value.split(" ");// Dividir la cadena en palabras usando el espacio como delimitador
 				for (int i = 0; i < words.length; i++) {
-					if (i % 5==0) {
-						String word2 = "\n";
-						System.out.println("SALTO DE LINEA: "+word2);
-						myWrite.write(word2);
+					if (enviosFile.getName() == "trabajadores.txt") {
+						if (i % 5 == 0) {
+							String word2 = "\n";
+							System.out.println("SALTO DE LINEA: " + word2);
+							myWrite.write(word2);
+						}
+					} else {
+						if (i % 3 == 0) {
+							String word2 = "\n";
+							System.out.println("SALTO DE LINEA: " + word2);
+							myWrite.write(word2);
+						}
 					}
 					if (words[i].length() < 14) {
 						// Añade los espacio hasta llegar a 14
@@ -293,14 +299,7 @@ public class CrearEnvio extends JFrame {
 						myWrite.write(word2);
 					}
 				}
-//			    for (String word : words) {	// Procesar cada palabra individualmente
-//			    	String word2 = allSameLengthOfString(word);	 // Aquí puedes hacer algo con cada palabra si es necesario
-//			        	 // Por ejemplo, escribir cada palabra en un nuevo archivo
-//			        System.out.println(word2);
-//			    }
-				// Contar los espacios en la cadena original
 			}
-			System.out.println("Cerrando writer");
 			myWrite.close();
 		} catch (IOException e) {
 			e.printStackTrace();
